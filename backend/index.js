@@ -1,11 +1,11 @@
 const express = require('express');
 const connectDB = require('./config/db');
-require('dotenv').config(); // Charge les variables d'environnement
+require('dotenv').config(); 
 const app = express();
 
 const port = process.env.PORT || 3000;
+const authRoutes = require('./router/authRoutes');
 
-// Connexion à la base de données
 connectDB()
   .then(() => {
     console.log('MongoDB Connected...');
@@ -16,7 +16,11 @@ connectDB()
 
 app.use(express.json());
 
-// Démarrer le serveur
+
+
+
+app.use('/api/auth', authRoutes);
+
 app.listen(port, () => {
-  console.log(`Server is running at http://localhost:${port}/`);
+  console.log(`Server is running at http://localhost:${port}`);
 });
