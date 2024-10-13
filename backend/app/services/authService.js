@@ -1,19 +1,18 @@
 const User = require('../models/user');
 const crypto = require('crypto');
 const transporter = require('../../config/nodemailerConfig')
-require('dotenv').config();
+const jwt = require('jsonwebtoken');
 
 
 
 class AuthService {
+  
   async register(data) {
     const user = new User(data);
     const existingUser = await User.findOne({ email: data.email });
     if (existingUser) {
       throw new Error('Email already in use');
     }
-
-
     await user.save();
     return user;
   }
@@ -21,10 +20,12 @@ class AuthService {
 
   async login(email, password) {
     const user = await User.findOne({ email });
+    const token = jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET, { expiresIn: '1h' });
+
     if (!user || !(await user.comparePassword(password))) {
       throw new Error('Invalid email or password');
     }
-    return user;
+    return {user , token};
   }
 
   async sendVerificationEmail(user) {

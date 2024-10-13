@@ -1,8 +1,7 @@
 const authService = require('../services/authService');
-const jwt = require('jsonwebtoken');
-require('dotenv').config();
 
-const register = async (req, res) => {
+
+exports.register = async (req, res) => {
   try {
     const user = await authService.register(req.body);
     console.log(user);
@@ -14,17 +13,16 @@ const register = async (req, res) => {
   }
 };
 
-const login = async (req, res) => {
+exports.login = async (req, res) => {
   try {
     const user = await authService.login(req.body.email, req.body.password);
-    const token = jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET, { expiresIn: '1h' });
-    res.status(200).json({ token, user });
+    res.status(200).json({ user });
   } catch (error) {
     res.status(401).json({ message: error.message });
   }
 };
 
-const verifyEmail = async (req, res) => {
+exports.verifyEmail = async (req, res) => {
   try {
     const user = await authService.verifyEmail(req.params.token);
     res.status(200).json({ message: 'Email verified successfully', user });
@@ -33,7 +31,7 @@ const verifyEmail = async (req, res) => {
   }
 };
 
-const forgetPassword = async (req, res) => {
+exports.forgetPassword = async (req, res) => {
   try {
     await authService.forgetPassword(req.body.email);
     console.log(req.body.email)
@@ -43,7 +41,7 @@ const forgetPassword = async (req, res) => {
   }
 };
 
-const resetPassword = async (req, res) => {
+exports.resetPassword = async (req, res) => {
   try {
     const user = await authService.resetPassword(req.params.token, req.body.password);
     res.status(200).json({ message: 'Password reset successfully', user });
@@ -52,10 +50,4 @@ const resetPassword = async (req, res) => {
   }
 };
 
-module.exports = {
-  register,
-  login,
-  verifyEmail,
-  forgetPassword,
-  resetPassword,
-};
+

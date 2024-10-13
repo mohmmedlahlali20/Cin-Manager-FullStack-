@@ -32,9 +32,10 @@ connectDB()
 
 
 const authRoutes = require('./router/authRoutes');
-
+const salleRoutes = require('./router/salleRoutes');
 
 app.use('/api/auth', authRoutes);
+app.use('/api/salle' , salleRoutes);
 
 app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);

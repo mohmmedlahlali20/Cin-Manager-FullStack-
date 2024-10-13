@@ -1,5 +1,5 @@
-const roleMiddleware = (Role) => (req, res, next) => {
-    if (req.user.role !== Role) {
+const roleMiddleware = () => (req, res, next) => {
+    if (req.user.role !== 'admin') {
       return res.status(403).send('Access denied. Insufficient permissions.');
     }
     next();

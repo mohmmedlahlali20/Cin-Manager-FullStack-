@@ -7,7 +7,7 @@ export default function Login() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const path = import.meta.env.VITE_BACK_END_URI;
-  console.log(path);
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
