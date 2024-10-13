@@ -4,7 +4,8 @@ const {
     createSalle,
     updateSalle,
     deleteSalle,
-    getOneSalle
+    getSalleById,
+    getSteatsBySalleId
 
 } = require('../app/controllers/salleController')
 
@@ -14,7 +15,8 @@ const authMiddleware = require('../middleware/auth')
 const router = express.Router()
 
 router.get('/getAllSalle',authMiddleware, getAllSalles)
-router.get('/getOneSalle/:id' ,authMiddleware, getOneSalle)
+router.get('/getSalleById/:id' ,authMiddleware, getSalleById)
+router.get('/salleID/:id/steats',authMiddleware, getSteatsBySalleId)
 
 router.post('/createSalle', authMiddleware,createSalle)
 

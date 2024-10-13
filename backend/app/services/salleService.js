@@ -6,15 +6,22 @@ const salle = require('../models/salle')
 
 
 class salleService {
-    async getAllSalles() {
+    async getAllSalles() {     
         const salles = await salle.find({ isDelete: false });
         return salles;
     }
 
-    async getOneSalle(id) {
+    async getSalleById(id) {
         const salle = await salle.findById(id);
-        if (!salle) throw new Error('Salle not found');
+        if (!salle) throw new Error('Salle not found');                      
         return salle;
+    }
+
+    async getSteatsBySalleId(id){
+        const salleWithSteats = await salle.findById(id);
+       
+        if (!salleWithSteats) throw new Error('Salle not found');
+        return salleWithSteats.seats;
     }
 
 
