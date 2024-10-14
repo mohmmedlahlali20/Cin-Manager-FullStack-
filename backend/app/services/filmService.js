@@ -38,6 +38,12 @@ class classFilm {
         return deletedFilm;
     }
 
+    async getFilmsByGenre(genre) {
+        const films = await filmsModel.find({ isDelete: false, genre });
+        return films;
+    }
+   
+
 
 }
 
