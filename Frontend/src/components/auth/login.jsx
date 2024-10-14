@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
-import {jwtDecode} from "jwt-decode";
-import { useNavigate } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import { jwtDecode } from "jwt-decode";
+import { useNavigate, Link } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import axios from 'axios';
+import LogoSvg from "../logo/LogoSvg";
+import Svg1 from '../logo/Svg1';
 
 function Login() {
     const path = import.meta.env.VITE_BACK_END_URI;
@@ -18,35 +19,33 @@ function Login() {
         if (e.target.name === 'password') setPassword(e.target.value);
     };
 
-
     const handleLogin = async (e) => {
-      e.preventDefault();
-      try {
-          const response = await axios.post(`${path}/auth/login`, { email, password });
-          
-          const token = response.data.token;  
-          console.log('Token:', token);          
-          if (token) {
-              Cookies.set('token', token);
-              const user = jwtDecode(token);
-              console.log(user);
-              if (user.userRole === 'admin') {
-                  navigate('/DashboardAdmin');
-              } else if (user.userRole === 'client') {
-                  navigate('/cinema');
-              }
-          } else {
-              setError('No token found. Please try logging in again.');
-          }
-      } catch (error) {
-          setError(error.response?.data?.msg || 'An error occurred during login.');
-      }
-  };
-  
+        e.preventDefault();
+        try {
+            const response = await axios.post(`${path}/auth/login`, { email, password });
+            console.log(response.data.user.token);
+            
+            const token = response.data.user.token;
+            console.log('Token:', token);
+            if (token) {
+                Cookies.set('token', token);
+                const user = jwtDecode(token);
+                console.log(user);
+                if (user.role === 'admin') {
+                    navigate('/DashboardAdmin');
+                } else if (user.userRole === 'client') {
+                    navigate('/cinema');
+                }
+            } else {
+                setError('No token found. Please try logging in again.');
+            }
+        } catch (error) {
+            setError(error.response?.data?.msg || 'An error occurred during login.');
+        }
+    };
 
     useEffect(() => {
         const token = Cookies.get('token');
-
         if (token) {
             try {
                 const user = jwtDecode(token);
@@ -63,14 +62,13 @@ function Login() {
     }, [navigate]);
 
     return (
-        <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-teal-200 to-teal-700">
-            <div className="w-full max-w-md p-10 bg-white rounded-lg shadow-lg">
+        <div className="flex items-center justify-center min-h-screen p-4 bg-red-500">
+            <div className="hidden lg:block">
+                <Svg1 />
+            </div>
+            <div className="w-full max-w-md p-8 bg-white rounded-lg shadow-lg">
                 <div className="flex justify-center mb-6">
-                    <img
-                        src="/assets/image/cinemaLogo.png"
-                        alt="Cinema Logo"
-                        className="object-contain h-16"
-                    />
+                    <LogoSvg />
                 </div>
 
                 <form onSubmit={handleLogin}>

@@ -1,23 +1,28 @@
-const mongoss = require('mongoose')
+const mongoose = require('mongoose');
 
-
-
-const seanceSchema = new mongoss.Schema({
-    salleId : {
-        type: mongoss.Schema.Types.ObjectId,
-        ref : salle,
-        require : true
+const seanceSchema = new mongoose.Schema({
+    salleId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Salle',
+        required: true
     },
-    name : {
-        type : String,
-        require : true
+    filmId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Film',
+        required: true
     },
-    duration : {
-        type : Date,
-        require : true
+    name: {
+        type: String,
+        required: true
     },
+    start_date: {
+        type: Date,
+        required: true
+    },
+    end_date: {
+        type: Date,
+        required: true
+    }
+});
 
-})
-
-
-module.exports = mongoss.model('seance', seanceSchema);
+module.exports = mongoose.model('Seance', seanceSchema);
