@@ -21,6 +21,20 @@ const filmSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
+    image: {
+        type: String,
+        required: true,
+    },
+    movies: {
+        type:String,
+        required: false
+    },
+    director: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true,
+    },
+
     createAt: {
         type: Date,
         default: Date.now()
