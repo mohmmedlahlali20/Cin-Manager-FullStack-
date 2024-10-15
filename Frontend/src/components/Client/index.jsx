@@ -1,5 +1,7 @@
 import Movies from './Movies'
+import MoviesDetails from './MoviesDetails'
 
 export {
-    Movies
+    Movies ,
+    MoviesDetails
 }

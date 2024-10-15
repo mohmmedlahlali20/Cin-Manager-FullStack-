@@ -39,11 +39,13 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 const authRoutes = require('./router/authRoutes');
 const salleRoutes = require('./router/salleRoutes');
-const filmRoutes = require('./router/filmrouters')
+const filmRoutes = require('./router/filmRouters')
+const seanceRoutes = require('./router/seanceRoutes')
 
 app.use('/api/auth', authRoutes);
 app.use('/api/salle' , salleRoutes);
 app.use('/api/film', filmRoutes);
+app.use('/api/seance' , seanceRoutes)
 
 app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);

@@ -13,7 +13,8 @@ import {
 } from "../Admin/index";
 
 import {
-    Movies
+    Movies,
+    MoviesDetails
 } 
 from '../Client/index'
 
@@ -35,6 +36,11 @@ const router = createBrowserRouter([
             }
         ],
     },
+    {
+            path : "/films/:id",
+            element : <MoviesDetails />
+    },
+
     {
         path : "/movies",
         element : <Movies />

@@ -1,8 +1,8 @@
-const seanceModel = require('../services/seanceService');
+const seanceService = require('../services/seanceService');
 
 exports.getAllSeances = async (req, res) => {
     try {
-        const seances = await seanceModel.getAllSeances();
+        const seances = await seanceService.getAllSeances();
         res.status(200).json({ seances });
         return seances;
     } catch (error) {
@@ -14,7 +14,7 @@ exports.getAllSeances = async (req, res) => {
 
 exports.createSeance = async (req, res) => {
     try {
-        const seance = await seanceModel.createSeance(req.body);
+        const seance = await seanceService.createSeance(req.body);
         res.status(201).json(seance);
     } catch (error) {
         console.error(error);
@@ -25,7 +25,7 @@ exports.createSeance = async (req, res) => {
 
 exports.getSeanceById = async (req, res) => {
     try {
-        const seance = await seanceModel.getSeanceById(req.params.id);
+        const seance = await seanceService.getSeanceById(req.params.id);
         res.status(200).json({ seance });
     } catch (error) {
         console.error(error);
@@ -36,7 +36,7 @@ exports.getSeanceById = async (req, res) => {
 
 exports.updateSeance = async (req, res) => {
     try {
-        const seance = await seanceModel.updateSeance(req.params.id, req.body);
+        const seance = await seanceService.updateSeance(req.params.id, req.body);
         res.status(200).json(seance);
     } catch (error) {
         console.error(error);
@@ -47,7 +47,7 @@ exports.updateSeance = async (req, res) => {
 
 exports.deleteSeance = async (req, res) => {
     try {
-        const seance = await seanceModel.deleteSeance(req.params.id);
+        const seance = await seanceService.deleteSeance(req.params.id);
         res.status(200).json(seance);
     } catch (error) {
         console.error(error);

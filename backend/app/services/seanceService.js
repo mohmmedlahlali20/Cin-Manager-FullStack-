@@ -33,3 +33,5 @@ class SeanceService {
         return seances;
     }
 }
+
+module.exports = new SeanceService();
