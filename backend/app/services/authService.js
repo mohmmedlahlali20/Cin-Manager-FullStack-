@@ -20,7 +20,7 @@ class AuthService {
 
   async login(email, password) {
     const user = await User.findOne({ email });
-    const token = jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET, { expiresIn: '1h' });
+    const token = jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET);
 
     if (!user || !(await user.comparePassword(password))) {
       throw new Error('Invalid email or password');

@@ -12,6 +12,11 @@ import {
     AllMovies
 } from "../Admin/index";
 
+import {
+    Movies
+} 
+from '../Client/index'
+
 const router = createBrowserRouter([
     {
         element: <Layouts />,
@@ -30,6 +35,11 @@ const router = createBrowserRouter([
             }
         ],
     },
+    {
+        path : "/movies",
+        element : <Movies />
+    },  
+
     {
         path: "/login",
         element: <Login />,

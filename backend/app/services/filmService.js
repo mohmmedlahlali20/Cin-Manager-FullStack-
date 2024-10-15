@@ -10,6 +10,7 @@ class classFilm {
         const films = await filmsModel.find({ isDelete: false });
         return films;
     }
+    
     async getFilmById(id) {
         const film = await filmsModel.findById(id);
         if (!film) throw new Error('Film not found');
@@ -25,7 +26,7 @@ class classFilm {
             ...data,
             image: `uploads/${file.filename}`
         };
-        
+
         console.log('filmData before save:', filmData);
         
     
