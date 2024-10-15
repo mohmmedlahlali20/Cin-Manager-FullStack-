@@ -15,18 +15,27 @@ class classFilm {
         if (!film) throw new Error('Film not found');
         return film;
     }
+
     async createFilm(data, file) {
+        if (!data.title || !data.genre || !data.description || !data.publishedDate || !file) {
+            throw new Error('Missing required fields');
+        }
+    
         const filmData = {
             ...data,
-                image: `uploads/${file.filename}`
-                
-            };
+            image: `uploads/${file.filename}`
+        };
+        
+        console.log('filmData before save:', filmData);
+        
     
         const createNewFilm = new filmsModel(filmData);
         await createNewFilm.save();
+    
         return createNewFilm;
     }
     
+
     async updateFilm(id, data) {
         const updatedFilm = await filmsModel.findByIdAndUpdate(id, data, { new: true });
         if (!updatedFilm) throw new Error('Film not found');
@@ -42,7 +51,7 @@ class classFilm {
         const films = await filmsModel.find({ isDelete: false, genre });
         return films;
     }
-   
+
 
 
 }

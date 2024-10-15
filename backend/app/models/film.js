@@ -6,7 +6,9 @@ const filmSchema = new mongoose.Schema({
         required: true
     },
     genre: {
-        type: [String], 
+        type: String,
+        enum: ['Action', 'Drama', 'Thriller', 'Comedy', 'Fantasy'],
+
         required: true
     },
     description: {
@@ -31,13 +33,13 @@ const filmSchema = new mongoose.Schema({
     },
     director: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
+        ref: 'User', 
         required: true,
     },
 
     createAt: {
         type: Date,
-        default: Date.now()
+        default: Date.now
     }
 });
 

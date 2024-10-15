@@ -1,4 +1,5 @@
 const express = require('express');
+const {upload } = require('../config/multer')
 const {
     getAllFilms,
     createFilm
@@ -6,13 +7,12 @@ const {
     require('../app/controllers/filmController')
 
 const authMiddleware = require('../middleware/auth')
-const {upload } = require('../config/multer')
 const router = express.Router()
 
 
 router.get('/getAllFilms', authMiddleware, getAllFilms)
 
-router.post('/createFilm', authMiddleware,upload.single('image'), createFilm)
+router.post('/createFilms', authMiddleware, upload.single('image'), createFilm);
 
 
 module.exports = router;

@@ -50,7 +50,7 @@ function Login() {
             try {
                 const user = jwtDecode(token);
                 if (user.userRole === 'admin') {
-                    navigate('/home');
+                    navigate('/');
                 } else {
                     navigate('/cinema');
                 }

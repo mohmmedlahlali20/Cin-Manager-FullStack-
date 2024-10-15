@@ -19,8 +19,8 @@ exports.createFilm = async (req, res) => {
         const newFilm = await filmService.createFilm(req.body, req.file);
         res.status(201).json(newFilm);
     } catch (error) {
-        console.error('Error creating film:', error);
-        res.status(500).json({ message: 'Failed to create film' });
+        console.error('Error creating film:', error); 
+        res.status(500).json({ message: 'Failed to create film', error: error.message });
     }
 };
 

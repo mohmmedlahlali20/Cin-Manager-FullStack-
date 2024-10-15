@@ -1,42 +1,47 @@
-
-import {
-    createBrowserRouter
-} from "react-router-dom";
-import {
+import { createBrowserRouter } from "react-router-dom";
+import { 
     Login, 
-    Register
+    Register 
+} from '../auth/index';
 
- } from '../auth/index'
 import Layouts from "../Layouts/layouts";
 
+import {
+    Dashboard,
+    AjouterMovie,
+    AllMovies
+} from "../Admin/index";
 
 const router = createBrowserRouter([
-
-
-{
-    element: <Layouts/>,
-    children : [
-
-    ],
-},
-
+    {
+        element: <Layouts />,
+        children: [
+            {
+                path: "/",
+                element: <Dashboard />,
+            },
+            {
+                path: "/Add_Movies",
+                element: <AjouterMovie />
+            },
+            {
+                path : "/List_Movies",
+                element : <AllMovies />
+            }
+        ],
+    },
     {
         path: "/login",
         element: <Login />,
-
     },
     {
         path: "/register",
         element: <Register />,
-
     },
     {
         path: "/*",
-        element: <h1>Page Not Found</h1>
-    }
-
-])
-
-
+        element: <h1>Page Not Found</h1>,
+    },
+]);
 
 export default router;
