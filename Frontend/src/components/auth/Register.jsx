@@ -2,7 +2,7 @@
 /* eslint-disable no-undef */
 
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import LogoSvg from '../logo/LogoSvg';
 import Svg1 from '../logo/Svg1';
 import axios from 'axios';
@@ -16,6 +16,7 @@ function Register() {
   const [avatar, setAvatar] = useState(null);
   const [dateOfBirth, setDateOfBirth] = useState('');
   const [error, setError] = useState(null);
+  const navigate = useNavigate('')
 
   const hundelRegister = async (e) => {
     e.preventDefault();
@@ -26,15 +27,16 @@ function Register() {
           lastname: lastName, 
           email,
           password,
-        
           dateOfBirth,
-          avatar: avatar ? await convertToBase64(avatar) : null, 
+          avatar:  null, 
         };
         const response = await axios.post(`${path}/auth/register`, userData, {
           headers: {
             'Content-Type': 'application/json'
           }
         });
+
+        navigate('/login')
       
         console.log(response.data);
       } catch (error) {
@@ -43,14 +45,7 @@ function Register() {
       }
   };
 
-  const convertToBase64 = (file) => {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => resolve(reader.result);
-      reader.onerror = (error) => reject(error);
-    });
-  };
+ 
 
   return (
       <div className="flex flex-col items-center justify-center min-h-screen gap-5 bg-gradient-to-r from-blue-500 to-purple-600 sm:px-4 md:flex-row md:px-10">

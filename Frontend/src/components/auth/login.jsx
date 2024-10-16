@@ -30,12 +30,8 @@ function Login() {
             if (token) {
                 Cookies.set('token', token);
                 const user = jwtDecode(token);
-                console.log(user);
-                if (user.role === 'admin') {
-                    navigate('/DashboardAdmin');
-                } else if (user.userRole === 'client') {
-                    navigate('/cinema');
-                }
+                console.log(user.role);
+                
             } else {
                 setError('No token found. Please try logging in again.');
             }
@@ -49,10 +45,13 @@ function Login() {
         if (token) {
             try {
                 const user = jwtDecode(token);
-                if (user.userRole === 'admin') {
-                    navigate('/');
+                console.log("decoded token" , user);
+                console.log(" fucking role" ,user.role);
+                
+                if (user.role === 'admin') {
+                    navigate('/admin');
                 } else {
-                    navigate('/cinema');
+                    navigate('/movies');
                 }
             } catch (error) {
                 console.error("Error decoding token:", error);

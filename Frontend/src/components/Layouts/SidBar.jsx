@@ -1,13 +1,19 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import Cookies from 'js-cookie'
+import { useNavigate } from 'react-router-dom';
 
 export default function Sidebar() {
     const [isOpen, setIsOpen] = useState(false); 
+    const navigate = useNavigate();
 
     const toggleSidebar = () => {
         setIsOpen(!isOpen);
     };
-
+    const handleLogout = () => {
+        Cookies.remove('token');
+        navigate('/login');
+    };
     return (
         <div >
             <button
@@ -64,8 +70,8 @@ export default function Sidebar() {
                     </ul>
                 </nav>
                 <div className="flex items-center justify-center h-16 border-t border-gray-700">
-                    <button className="px-4 py-2 font-bold text-white transition-colors duration-200 bg-red-600 rounded hover:bg-red-500">
-                        Logout
+                    <button onClick={handleLogout} className="px-4 py-2 font-bold text-white transition-colors duration-200 bg-red-600 rounded hover:bg-red-500">
+                    <i className="material-icons">logout</i>
                     </button>
                 </div>
             </div>

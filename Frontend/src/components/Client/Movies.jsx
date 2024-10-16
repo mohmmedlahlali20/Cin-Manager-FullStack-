@@ -2,11 +2,14 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import LogoSvg from '../logo/LogoSvg';
+import { useNavigate } from 'react-router-dom';
 
 export default function Movies() {
     const path = import.meta.env.VITE_BACK_END_URI;
     const [movies, setMovies] = useState([]);
     const [isOpen, setIsOpen] = useState(false);
+    const navigate = useNavigate()
     const token = Cookies.get('token');
 
     useEffect(() => {
@@ -29,18 +32,28 @@ export default function Movies() {
         if (token) {
             fetchMovies();
         }
-    }, [token, path]);
+
+
+
+
+
+    }, [token, path, navigate]);
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
     };
-
+    const handleLogout = () => {
+        Cookies.remove('token');
+        navigate('/login');
+    };
     return (
         <>
             <nav className="bg-gradient-to-r from-blue-300 to-purple-900">
                 <div className="container flex items-center justify-between px-4 py-4 mx-auto">
 
-                    <div className="text-xl font-bold text-white">MovieApp</div>
+                    <div className="text-xl font-bold text-white">
+                        <LogoSvg />
+                    </div>
 
 
                     <div className="md:hidden">
@@ -58,16 +71,27 @@ export default function Movies() {
                             <a href="/films" className="block px-4 py-2 text-white hover:bg-gray-700 md:hover:bg-transparent">All Movies</a>
                         </li>
                         <li className="text-center md:text-left">
-                            <a href="/about" className="block px-4 py-2 text-white hover:bg-gray-700 md:hover:bg-transparent">About</a>
+                            <a href="/about" className="block px-4 py-2 text-white hover:bg-gray-700 md:hover:bg-transparent">fav</a>
                         </li>
+                        <li className="mt-2">
+                            <button
+                                onClick={handleLogout}
+                                className="block text-white hover:bg-gray-700 md:hover:bg-transparent"
+                            >
+                                <i className="material-icons">logout</i>
+                            </button>
+                        </li>
+
                     </ul>
 
                 </div>
+
+
             </nav>
 
 
-            <section className="py-16 m-5">
-                <div className="container mx-auto">
+            <section className="bg-gradient-to-r from-blue-400 to-purple-900">
+                <div className="container py-16 mx-auto">
                     <h2 className="mb-8 text-3xl font-bold text-center text-gray-800">All Movies</h2>
                     <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                         {movies.map((movie) => (

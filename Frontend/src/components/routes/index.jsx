@@ -25,7 +25,7 @@ const router = createBrowserRouter([
         element: <Layouts />,
         children: [
             {
-                path: "/",
+                path: "/admin",
                 element: <Dashboard />,
             },
             {
