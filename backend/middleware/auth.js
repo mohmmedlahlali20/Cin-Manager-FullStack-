@@ -8,6 +8,7 @@ const authMiddleware = (req, res, next) => {
   try {
     const decoded = verifyToken(token.split(' ')[1]);
     req.user = decoded;
+    console.log("Decoded Token:", decoded);
     next();
   } catch (error) {
     return res.status(401).send('Invalid token.');

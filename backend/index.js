@@ -37,11 +37,13 @@ const authRoutes = require('./router/authRoutes');
 const salleRoutes = require('./router/salleRoutes');
 const filmRoutes = require('./router/filmRouters')
 const seanceRoutes = require('./router/seanceRoutes')
+const favoriRoutes = require('./router/favorisRouters')
 
 app.use('/api/auth', authRoutes);
 app.use('/api/salle' , salleRoutes);
 app.use('/api/film', filmRoutes);
 app.use('/api/seance' , seanceRoutes)
+app.use('/api/favoris' , favoriRoutes)
 
 app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);

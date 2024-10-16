@@ -2,7 +2,8 @@ const express = require('express');
 
 const {
     addFavoris,
-    getFavoris
+    getFavoris,
+    getFavorisByUserId
 } = 
 require('../app/controllers/favorisController')
 
@@ -11,7 +12,9 @@ const router = express.Router()
 const authMiddleware = require('../middleware/auth')
 
 
-router.post('/addFavoris',authMiddleware, addFavoris)
+router.post('/addFavoris/:filmId', authMiddleware, addFavoris);
+
+router.get('/getUserFavori', authMiddleware, getFavorisByUserId);
 
 router.get('/getFavoris',authMiddleware, getFavoris)
 

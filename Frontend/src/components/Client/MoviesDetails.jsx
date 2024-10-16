@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unknown-property */
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
@@ -24,7 +25,19 @@ export default function MovieDetails() {
             }
         };
 
-        
+
+
+        // const savedMovies = async () =>{
+        //     try {
+        //         const response = await axios.post(`${path}/addFavoris/${id}`)
+                
+        //     } catch (err) {
+                
+        //     }
+
+        // }
+
+
 
         if (token) {
             fetchMovieDetails();
@@ -35,7 +48,7 @@ export default function MovieDetails() {
     if (!movie) {
         return <div className="text-center text-white">Loading...</div>;
     }
-    
+
 
     return (
         <section className="flex flex-col items-center justify-center min-h-screen p-8 text-white bg-gradient-to-r from-indigo-600 to-purple-700">
@@ -55,7 +68,7 @@ export default function MovieDetails() {
 
                         <div className="flex items-center space-x-6">
                             <span className="px-4 py-1 text-sm font-semibold text-white bg-purple-600 rounded-full shadow-sm">{movie.genre}</span>
-                            <span className="text-sm text-gray-300">Released: {movie.publishedDate}</span>
+                            <span className="text-sm text-gray-300">Released: {new Date(movie.publishedDate).toLocaleDateString()}</span>
                         </div>
 
                         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
@@ -66,17 +79,30 @@ export default function MovieDetails() {
                         </div>
 
                         <div className="flex mt-10 space-x-6">
-                            <a
-                                href={`/films`}
-                                className="inline-block px-8 py-3 text-lg font-bold text-white transition-all bg-purple-600 rounded-full shadow-md hover:bg-purple-700 hover:shadow-lg focus:ring-4 focus:ring-purple-400"
-                            >
-                                Watch Now
-                            </a>
+                            {movie.movies && (
+                                <a
+                                    href={`/watch/${movie._id}`}
+                                    className="inline-block px-8 py-3 text-lg font-bold text-white transition-all bg-purple-600 rounded-full shadow-md hover:bg-purple-700 hover:shadow-lg focus:ring-4 focus:ring-purple-400"
+                                >
+                                    Watch Now
+                                </a>
+                            )}
+
+
+
                             <a
                                 href={`/films`}
                                 className="inline-block px-8 py-3 text-lg font-bold text-white transition-all bg-gray-600 rounded-full shadow-md hover:bg-gray-700 hover:shadow-lg focus:ring-4 focus:ring-gray-400"
                             >
-                                Back to Movies
+                                reserve now
+                            </a>
+                            <a
+                                href={`/saved/${movie._id}`}
+                                className="inline-block  text-lg font-bold text-white transition-all bg-gray-600 rounded-full shadow-md hover:bg-gray-700 hover:shadow-lg focus:ring-4 focus:ring-gray-400"
+                            >
+                                <svg width="80px" height="50px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M6.75 6L7.5 5.25H16.5L17.25 6V19.3162L12 16.2051L6.75 19.3162V6ZM8.25 6.75V16.6838L12 14.4615L15.75 16.6838V6.75H8.25Z" fill="#080341" />
+                                </svg>
                             </a>
                         </div>
                     </div>
