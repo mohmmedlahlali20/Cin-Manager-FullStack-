@@ -25,7 +25,7 @@ exports.addFavoris = async (req, res) => {
 
 exports.getFavorisByUserId = async (req, res) => {
     try {
-        console.log("userId:", req.user.id);
+       
 
         const userFavoris = await favorisService.getFavorisByUserId(req.user.id);
         console.log(userFavoris);

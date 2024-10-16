@@ -2,7 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import { 
     Login, 
     Register 
-} from '../auth/index';
+} from '../auth';
 
 import Layouts from "../Layouts/layouts";
 
@@ -10,14 +10,15 @@ import {
     Dashboard,
     AjouterMovie,
     AllMovies
-} from "../Admin/index";
+} from "../Admin";
 
 import {
     Movies,
     MoviesDetails,
-    Vedio
+    Video,
+    Favorits
 } 
-from '../Client/index'
+from '../Client'
 
 const router = createBrowserRouter([
     {
@@ -43,7 +44,12 @@ const router = createBrowserRouter([
     },
     {
          path : "/watch/:id",
-        element : <Vedio />
+        element : <Video />
+    },
+
+    {
+        path : "/favorits",
+        element : <Favorits />
     },
    
 

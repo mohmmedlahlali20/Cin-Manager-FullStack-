@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import Cookies from 'js-cookie';
 
-export default function Vedio() {
+export default function Video() {
     const path = import.meta.env.VITE_BACK_END_URI;
     const [movie, setMovie] = useState(null);
     const { id } = useParams();

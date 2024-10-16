@@ -11,7 +11,7 @@ class FavorisService {
 
     async getFavorisByUserId(userId) {
         const userFavoris = await favorisModel.find({
-            userId: userId, 
+            userId: userId
         })  
     
         console.log("favoris found:", userFavoris);

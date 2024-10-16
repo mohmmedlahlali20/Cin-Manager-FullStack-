@@ -1,8 +1,10 @@
 import Movies from './Movies'
 import MoviesDetails from './MoviesDetails'
-import Vedio from './Vedio'
+import Video from './Video'
+import Favorits from './Favorits'
 export {
     Movies ,
     MoviesDetails,
-    Vedio
+    Video,
+    Favorits
 }
