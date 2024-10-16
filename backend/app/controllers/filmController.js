@@ -24,10 +24,28 @@ exports.createFilm = async (req, res) => {
     }
 };
 
+exports.ajouterVedio = async (req, res) => {
+    try {
+        const { filmId } = req.params;
+        console.log(filmId);
+        
+        const videoUrl = await filmService.uploadMovieToMinio(req.file);
+        const updatedFilm = await filmService.updateFilmWithVideo(filmId, videoUrl);
+
+        res.status(200).json({ message: 'Vidéo ajoutée au film avec succès', film: updatedFilm });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: error.message });
+    }
+};
+
 
 exports.getFilmById = async (req, res) => {
     try {
-        const film = await filmService.getFilmById(req.params.id);
+        const film = await filmService
+        .getFilmById(req.params.id)
+      
+        ;
         if (!film) {
             return res.status(404).json({ message: 'Film not found' });
         }

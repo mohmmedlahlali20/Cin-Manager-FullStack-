@@ -24,63 +24,64 @@ export default function MovieDetails() {
             }
         };
 
+        
+
         if (token) {
             fetchMovieDetails();
         }
     }, [id, token, path]);
 
+
     if (!movie) {
         return <div className="text-center text-white">Loading...</div>;
     }
     
+
     return (
-        <>
-            <section className="flex flex-col items-center justify-center min-h-screen p-8 text-white bg-gradient-to-r from-blue-400 to-purple-500">
-                <div className="container mx-auto">
-                    <div className="flex flex-col lg:flex-row lg:space-x-10 lg:items-start animate-fadeIn">
-                        <div className="mb-6 lg:w-1/3 lg:mb-0">
-                            <img
-                                src={`http://localhost:3000/${movie.image}`}
-                                alt={movie.title}
-                                className="object-cover w-full h-full max-h-[600px] rounded-lg shadow-lg transition-transform duration-300 transform hover:scale-105"
-                            />
+        <section className="flex flex-col items-center justify-center min-h-screen p-8 text-white bg-gradient-to-r from-indigo-600 to-purple-700">
+            <div className="container mx-auto">
+                <div className="flex flex-col lg:flex-row lg:space-x-12 lg:items-start animate-fadeIn lg:animate-none">
+                    <div className="mb-8 lg:w-1/3 lg:mb-0">
+                        <img
+                            src={`http://localhost:3000/${movie.image}`}
+                            alt={movie.title}
+                            className="object-cover w-full h-full max-h-[400px] rounded-lg shadow-xl transition-transform duration-300 transform hover:scale-105 hover:shadow-2xl"
+                        />
+                    </div>
+
+                    <div className="space-y-8 lg:w-2/3">
+                        <h1 className="text-5xl font-extrabold tracking-tight text-purple-200">{movie.title}</h1>
+                        <p className="text-lg leading-relaxed text-gray-200">{movie.description}</p>
+
+                        <div className="flex items-center space-x-6">
+                            <span className="px-4 py-1 text-sm font-semibold text-white bg-purple-600 rounded-full shadow-sm">{movie.genre}</span>
+                            <span className="text-sm text-gray-300">Released: {movie.publishedDate}</span>
                         </div>
 
-                        <div className="space-y-6 lg:w-2/3">
-                            <h1 className="text-4xl font-bold tracking-wide text-purple-300">{movie.title}</h1>
-                            <p className="text-lg text-gray-300">{movie.description}</p>
-
-                            <div className="flex items-center space-x-4">
-                                <span className="px-4 py-1 text-sm font-semibold text-white bg-purple-600 rounded-full">{movie.genre}</span>
-                                <span className="text-sm text-gray-400">Released: {movie.publishedDate}</span>
+                        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                            <div>
+                                <h3 className="text-xl font-semibold text-purple-300">Director</h3>
+                                <p className="text-gray-300">{movie.director.firstname} {movie.director.lastname}</p>
                             </div>
+                        </div>
 
-                            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-                                <div>
-                                    <h3 className="text-xl font-bold">Director</h3>
-                                    <p className="text-gray-300">{movie.director}</p>
-                                </div>
-                              
-                            </div>
-
-                            <div className="mt-8">
-                                <a
-                                    href={`/films`}
-                                    className="inline-block px-6 py-3 text-lg font-bold text-white transition bg-purple-600 rounded-full hover:bg-purple-700 focus:ring-4 focus:ring-purple-400"
-                                >
-                                   watch now
-                                </a>
-                                <a
-                                    href={`/films`}
-                                    className="inline-block px-6 py-3 text-lg font-bold text-white transition bg-purple-600 rounded-full hover:bg-purple-700 focus:ring-4 focus:ring-purple-400"
-                                >
-                                    Back to Movies
-                                </a>
-                            </div>
+                        <div className="flex mt-10 space-x-6">
+                            <a
+                                href={`/films`}
+                                className="inline-block px-8 py-3 text-lg font-bold text-white transition-all bg-purple-600 rounded-full shadow-md hover:bg-purple-700 hover:shadow-lg focus:ring-4 focus:ring-purple-400"
+                            >
+                                Watch Now
+                            </a>
+                            <a
+                                href={`/films`}
+                                className="inline-block px-8 py-3 text-lg font-bold text-white transition-all bg-gray-600 rounded-full shadow-md hover:bg-gray-700 hover:shadow-lg focus:ring-4 focus:ring-gray-400"
+                            >
+                                Back to Movies
+                            </a>
                         </div>
                     </div>
                 </div>
-            </section>
-        </>
+            </div>
+        </section>
     );
 }
