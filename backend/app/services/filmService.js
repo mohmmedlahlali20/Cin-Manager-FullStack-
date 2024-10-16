@@ -60,6 +60,9 @@ class classFilm {
     }
 
 
+    
+
+
 
     async uploadMovieToMinio(file) {
         const bucketName = 'movies';

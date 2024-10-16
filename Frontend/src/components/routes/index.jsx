@@ -14,7 +14,8 @@ import {
 
 import {
     Movies,
-    MoviesDetails
+    MoviesDetails,
+    Vedio
 } 
 from '../Client/index'
 
@@ -40,6 +41,11 @@ const router = createBrowserRouter([
             path : "/films/:id",
             element : <MoviesDetails />
     },
+    {
+         path : "/watch/:id",
+        element : <Vedio />
+    },
+   
 
     {
         path : "/movies",

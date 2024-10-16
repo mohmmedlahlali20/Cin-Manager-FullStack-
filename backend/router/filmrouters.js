@@ -12,6 +12,6 @@ const uploads = multer({ storage: storage });
 router.get('/getAllFilms', authMiddleware, getAllFilms);
 router.get('/getFilms/:id', authMiddleware, getFilmById);
 router.post('/createFilms', authMiddleware, upload.single('image'), createFilm);
-router.put('/add-video/:filmId', uploads.single('movies'), ajouterVedio);
+router.put('/video/:filmId', uploads.single('movies'), ajouterVedio);
 
 module.exports = router;
