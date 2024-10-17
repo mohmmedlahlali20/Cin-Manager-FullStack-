@@ -3,10 +3,13 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import Cookies from 'js-cookie';
+import Swal from 'sweetalert2';
+import { jwtDecode } from 'jwt-decode';
+
 
 export default function MovieDetails() {
     const path = import.meta.env.VITE_BACK_END_URI;
-    const [movie, setMovie] = useState(null);
+    const [movie,setMovie] = useState(null);
     const { id } = useParams();
     const token = Cookies.get('token');
 
@@ -25,24 +28,56 @@ export default function MovieDetails() {
             }
         };
 
-
-
-        // const savedMovies = async () =>{
-        //     try {
-        //         const response = await axios.post(`${path}/addFavoris/${id}`)
-                
-        //     } catch (err) {
-                
-        //     }
-
-        // }
-
-
-
         if (token) {
             fetchMovieDetails();
         }
     }, [id, token, path]);
+
+    const savedMovies = async () => {
+        try {
+            console.log(movie._id);
+            console.log(token);
+            const user = jwtDecode(token)
+            
+            console.log("user" , user.id);
+            
+            
+            const response = await axios.post(`${path}/favoris/addFavoris/${movie._id}`, user.id,{
+                    headers: {
+                        accept: 'application/json',
+                        Authorization: `Bearer ${token}`,  
+                    },
+                }
+            );
+           
+
+
+            console.log(response.data);
+
+            if (response.data) {
+             
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Movie Saved',
+                    text: 'The movie has been added to your favorites successfully!',
+                    confirmButtonText: 'OK',
+                    timer: 2000
+                });
+    
+            }
+
+        } catch (err) {
+            console.error('Error saving movie to favorites:', err);
+            Swal.fire({
+                icon: 'danger',
+                title: 'Movie Saved',
+                text: 'Error saving movie to favorites',
+                // confirmButtonText: 'OK',
+                timer: 2000
+            });
+        
+        }
+    }
 
 
     if (!movie) {
@@ -97,11 +132,16 @@ export default function MovieDetails() {
                                 reserve now
                             </a>
                             <a
+                                id={`save-btn-${movie._id}`}
                                 href={`/saved/${movie._id}`}
-                                className="inline-block  text-lg font-bold text-white transition-all bg-gray-600 rounded-full shadow-md hover:bg-gray-700 hover:shadow-lg focus:ring-4 focus:ring-gray-400"
+                                onClick={(e) => {
+                                    e.preventDefault(); 
+                                    savedMovies();      
+                                }}
+                                className="inline-block text-lg font-bold text-white transition-all bg-gray-600 rounded-full shadow-md hover:bg-gray-700 hover:shadow-lg focus:ring-4 focus:ring-gray-400"
                             >
                                 <svg width="80px" height="50px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M6.75 6L7.5 5.25H16.5L17.25 6V19.3162L12 16.2051L6.75 19.3162V6ZM8.25 6.75V16.6838L12 14.4615L15.75 16.6838V6.75H8.25Z" fill="#080341" />
+                                    <path fillRule="evenodd" clipRule="evenodd" d="M6.75 6L7.5 5.25H16.5L17.25 6V19.3162L12 16.2051L6.75 19.3162V6ZM8.25 6.75V16.6838L12 14.4615L15.75 16.6838V6.75H8.25Z" fill="#080341" />
                                 </svg>
                             </a>
                         </div>

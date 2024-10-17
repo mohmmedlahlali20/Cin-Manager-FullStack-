@@ -4,6 +4,11 @@ exports.addFavoris = async (req, res) => {
     try {
         const { filmId } = req.params; 
         const userId = req.user.id; 
+
+        console.log(req.user.id);
+        console.log(req.params);
+
+
         if (!filmId || !userId) {
             return res.status(400).json({ message: 'filmId and userId are required.' });
         }
