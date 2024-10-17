@@ -3,9 +3,20 @@ const seanceModel = require('../models/seance');
 
 class SeanceService {
     async getAllSeances() {
-        const seances = await seanceModel.find({ isDelete: false });
+        const seances = await seanceModel.find().populate([
+            {
+                path: 'filmId',
+                model: 'Film',
+            },
+            {
+                path: 'salleId',
+                model: 'Salle',
+            },
+        ]);
+    
         return seances;
     }
+    
     async getSeanceById(id) {
         const seance = await seanceModel.findById(id);
         if (!seance) throw new Error('Service not found');
