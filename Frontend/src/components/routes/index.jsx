@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
-import { 
-    Login, 
-    Register 
+import {
+    Login,
+    Register
 } from '../auth';
 
 import Layouts from "../Layouts/layouts";
@@ -13,23 +13,33 @@ import {
 } from "../Admin";
 import {
     CreateReservation
-} 
-from '../Client/reservation'
+}
+    from '../Client/reservation'
 
 import {
     Movies,
     MoviesDetails,
     Video,
     Favorits
-} 
-from '../Client'
+}
+    from '../Client'
+
+import {
+    CreateSalle
+} from "../Admin/salle";
 
 
 import {
     AddSeance,
     ListSeances
+}
+    from '../Admin/seance'
+
+
+import {
+    NotFound
 } 
-from '../Admin/seance'
+from "../pages"
 
 const router = createBrowserRouter([
     {
@@ -44,42 +54,46 @@ const router = createBrowserRouter([
                 element: <AjouterMovie />
             },
             {
-                path : "/List_Movies",
-                element : <AllMovies />
+                path: "/List_Movies",
+                element: <AllMovies />
             },
             {
-                path : "/Add_Seance",
-                element : <AddSeance />
+                path: "/Add_Seance",
+                element: <AddSeance />
             },
             {
-                path : "/List_seances",
-                element : <ListSeances />
+                path: "/List_seances",
+                element: <ListSeances />
+            },
+            {
+                path: "/add_salle",
+                element: <CreateSalle />
             }
         ],
     },
     {
-            path : "/films/:id",
-            element : <MoviesDetails />
+        path: "/films/:id",
+        element: <MoviesDetails />
     },
     {
-        path : "/seance/:id",
-        element : <CreateReservation />
+        path: "/seance/:id",
+        element: <CreateReservation />
     },
     {
-         path : "/watch/:id",
-        element : <Video />
+        path: "/watch/:id",
+        element: <Video />
     },
 
     {
-        path : "/favorits",
-        element : <Favorits />
+        path: "/favorits",
+        element: <Favorits />
     },
-   
+
 
     {
-        path : "/movies",
-        element : <Movies />
-    },  
+        path: "/movies",
+        element: <Movies />
+    },
 
     {
         path: "/login",
@@ -91,7 +105,7 @@ const router = createBrowserRouter([
     },
     {
         path: "/*",
-        element: <h1>Page Not Found</h1>,
+        element: <NotFound />,
     },
 ]);
 
