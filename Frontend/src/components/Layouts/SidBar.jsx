@@ -49,6 +49,24 @@ export default function Sidebar() {
                         </li>
                         <li>
                             <Link
+                                to="/Add_Seance"
+                                className="flex items-center p-2 mb-2 text-gray-300 transition-colors duration-200 rounded-lg hover:bg-gray-700 hover:text-white"
+                            >
+                               <span className=" material-icons">add</span>
+                                <span className="ml-3">Seance</span>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link
+                                to="/List_seances"
+                                className="flex items-center p-2 mb-2 text-gray-300 transition-colors duration-200 rounded-lg hover:bg-gray-700 hover:text-white"
+                            >
+                               <span className=" material-icons">list</span>
+                                <span className="ml-3">list des seances</span>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link
                                 to="/List_Movies"
                                 className="flex items-center p-2 mb-2 text-gray-300 transition-colors duration-200 rounded-lg hover:bg-gray-700 hover:text-white"
                             >

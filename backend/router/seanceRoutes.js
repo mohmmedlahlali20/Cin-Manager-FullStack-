@@ -17,7 +17,7 @@ const router = express.Router()
 
 
 
-router.get('/get-seance' ,authMiddleware, getAllSeances)
+router.get('/getSeance' ,authMiddleware, getAllSeances)
 router.post('/addSeance' ,  createSeance)
 router.get('/getseance/:id' , authMiddleware,getSeanceByFilmId)
 

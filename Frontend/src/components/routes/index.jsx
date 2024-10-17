@@ -24,6 +24,13 @@ import {
 } 
 from '../Client'
 
+
+import {
+    AddSeance,
+    ListSeances
+} 
+from '../Admin/seance'
+
 const router = createBrowserRouter([
     {
         element: <Layouts />,
@@ -39,6 +46,14 @@ const router = createBrowserRouter([
             {
                 path : "/List_Movies",
                 element : <AllMovies />
+            },
+            {
+                path : "/Add_Seance",
+                element : <AddSeance />
+            },
+            {
+                path : "/List_seances",
+                element : <ListSeances />
             }
         ],
     },
