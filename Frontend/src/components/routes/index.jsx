@@ -25,7 +25,8 @@ import {
     from '../Client'
 
 import {
-    CreateSalle
+    CreateSalle,
+    ListSalles
 } from "../Admin/salle";
 
 
@@ -68,6 +69,11 @@ const router = createBrowserRouter([
             {
                 path: "/add_salle",
                 element: <CreateSalle />
+            },
+            {
+                path : "/listSalle",
+                element : <ListSalles />
+                
             }
         ],
     },

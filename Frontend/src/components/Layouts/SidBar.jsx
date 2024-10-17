@@ -83,6 +83,15 @@ export default function Sidebar() {
                                 <span className="ml-3">Movies</span>
                             </Link>
                         </li>
+                        <li>
+                            <Link
+                                to="/listSalle"
+                                className="flex items-center p-2 mb-2 text-gray-300 transition-colors duration-200 rounded-lg hover:bg-gray-700 hover:text-white"
+                            >
+                                <span className="material-icons">list</span>
+                                <span className="ml-3">Salles</span>
+                            </Link>
+                        </li>
                         
                         <li>
                             <Link
