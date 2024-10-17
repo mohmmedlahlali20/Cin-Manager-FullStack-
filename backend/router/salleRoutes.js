@@ -18,7 +18,7 @@ router.get('/getAllSalle',authMiddleware, getAllSalles)
 router.get('/getSalleById/:id' ,authMiddleware, getSalleById)
 router.get('/salleID/:id/steats',authMiddleware, getSteatsBySalleId)
 
-router.post('/createSalle', authMiddleware, roleMiddleware ,createSalle)
+router.post('/createSalle', authMiddleware ,createSalle)
 
 router.put('/updateSalle/:id', authMiddleware,roleMiddleware,updateSalle)
 

@@ -15,6 +15,8 @@ exports.getAllSeances = async (req, res) => {
 exports.createSeance = async (req, res) => {
     try {
         const seance = await seanceService.createSeance(req.body);
+        console.log(seance);
+        
         res.status(201).json(seance);
     } catch (error) {
         console.error(error);
@@ -30,6 +32,22 @@ exports.getSeanceById = async (req, res) => {
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Failed to get seance by id' });
+    }
+}
+
+
+exports.getSeanceByFilmId = async (req , res) => {
+
+    try {
+        const getSeanceByFilmId = await seanceService.getSeanceByFilmId(req.params.id)
+        console.log(getSeanceByFilmId);
+        
+        res.status(200).json({getSeanceByFilmId})
+        
+    } catch (err) {
+        console.error(err)
+        res.status(500).json({message : 'cannot get senace by film ID'})
+        
     }
 }
 

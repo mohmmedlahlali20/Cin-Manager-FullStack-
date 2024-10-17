@@ -4,6 +4,8 @@ const salleService = require('../services/salleService')
 exports.getAllSalles = async (req, res) => {
     try {
         const salles = await salleService.getAllSalles();
+        
+        
         res.status(200).json({ salles }); 
         return salles;
     } catch (error) {
@@ -43,6 +45,7 @@ exports.getSalleById = async (req , res) => {
 exports.createSalle = async (req , res) => {
     try {
         const createNewSalle = await salleService.createSalle(req.body);
+        console.log(createNewSalle);
         res.status(201).json(createNewSalle); 
         return createNewSalle
     } catch (error) {

@@ -26,6 +26,8 @@ class salleService {
 
 
     async createSalle(data) {
+        console.log(data);
+        
         const createNewSalle = new salle(data);
         await createNewSalle.save();
         console.log(createNewSalle.save());

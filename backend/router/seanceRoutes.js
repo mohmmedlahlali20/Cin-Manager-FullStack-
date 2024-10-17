@@ -4,6 +4,7 @@ const express = require('express');
 const {
     getAllSeances,
     createSeance ,
+    getSeanceByFilmId,
     getSeanceById,
     updateSeance,
     deleteSeance
@@ -17,7 +18,8 @@ const router = express.Router()
 
 
 router.get('/get-seance' ,authMiddleware, getAllSeances)
-router.post('/addSeance' , authMiddleware , createSeance)
+router.post('/addSeance' ,  createSeance)
+router.get('/getseance/:id' , authMiddleware,getSeanceByFilmId)
 
 
 

@@ -11,6 +11,10 @@ import {
     AjouterMovie,
     AllMovies
 } from "../Admin";
+import {
+    CreateReservation
+} 
+from '../Client/reservation'
 
 import {
     Movies,
@@ -41,6 +45,10 @@ const router = createBrowserRouter([
     {
             path : "/films/:id",
             element : <MoviesDetails />
+    },
+    {
+        path : "/seance/:id",
+        element : <CreateReservation />
     },
     {
          path : "/watch/:id",

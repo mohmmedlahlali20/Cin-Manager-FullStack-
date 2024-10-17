@@ -126,7 +126,7 @@ export default function MovieDetails() {
 
 
                             <a
-                                href={`/films`}
+                                href={`/seance/${movie._id}`}
                                 className="inline-block px-8 py-3 text-lg font-bold text-white transition-all bg-gray-600 rounded-full shadow-md hover:bg-gray-700 hover:shadow-lg focus:ring-4 focus:ring-gray-400"
                             >
                                 reserve now
