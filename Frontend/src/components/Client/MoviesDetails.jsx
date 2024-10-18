@@ -5,6 +5,7 @@ import Cookies from 'js-cookie';
 import Swal from 'sweetalert2';
 import { jwtDecode } from 'jwt-decode';
 import { AjouterCommentair, Comments } from './commentair/index';
+import {GetRaitingByFilmId} from './rates'
 
 export default function MovieDetails() {
     const path = import.meta.env.VITE_BACK_END_URI;
@@ -95,12 +96,15 @@ export default function MovieDetails() {
                                 {movie.genre}
                             </span>
                             <span className="text-sm text-gray-300">Released: {new Date(movie.publishedDate).toLocaleDateString()}</span>
+                            <span className="text-sm text-gray-300">rating :  <GetRaitingByFilmId filmId={movie._id} />  </span>
                         </div>
                         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                             <div>
                                 <h3 className="text-xl font-semibold text-purple-300">Director</h3>
                                 <p className="text-gray-300">{movie.director.firstname} {movie.director.lastname}</p>
                             </div>
+                        
+                     
                         </div>
                         <div className="flex mt-10 space-x-6">
                             <a

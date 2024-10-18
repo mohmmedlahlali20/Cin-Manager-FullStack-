@@ -1,3 +1,9 @@
+import Cookies from 'js-cookie';
+import axios from "axios";
+
+
+
+
 
 export default function Favorits() {
   return (

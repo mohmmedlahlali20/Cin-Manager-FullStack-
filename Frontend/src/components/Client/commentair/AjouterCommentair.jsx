@@ -1,10 +1,10 @@
 import { useState } from "react";
 import Cookies from 'js-cookie';
-import { jwtDecode } from 'jwt-decode';
 import axios from 'axios';
+import {jwtDecode} from 'jwt-decode'; 
 import Swal from 'sweetalert2';
+import {AddRate} from "../rates"; 
 
-// eslint-disable-next-line react/prop-types
 export default function AjouterCommentair({ filmId }) {
     const path = import.meta.env.VITE_BACK_END_URI;
     const [formData, setFormData] = useState({
@@ -25,10 +25,10 @@ export default function AjouterCommentair({ filmId }) {
             [e.target.name]: e.target.value,
         });
     };
-    
+
     const handleAddComment = async (e) => {
         e.preventDefault();
-    
+
         if (!userId) {
             Swal.fire({
                 icon: 'error',
@@ -37,11 +37,7 @@ export default function AjouterCommentair({ filmId }) {
             });
             return;
         }
-    
-        console.log('userId:', userId);
-        console.log('filmId:', filmId);
-        console.log('commentaire:', formData.comment);
-    
+
         try {
             const response = await axios.post(
                 `${path}/comments/addComment`,
@@ -58,7 +54,7 @@ export default function AjouterCommentair({ filmId }) {
                     },
                 }
             );
-    
+
             if (response.data) {
                 Swal.fire({
                     icon: 'success',
@@ -67,32 +63,22 @@ export default function AjouterCommentair({ filmId }) {
                     confirmButtonText: 'OK',
                     timer: 2000,
                 });
-                setFormData({ comment: "" });
+                setFormData({ comment: "" });  
             }
         } catch (error) {
             console.error('Error adding comment:', error);
-            if (error.response) {
-                console.error('Response data:', error.response.data);
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Error',
-                    text: error.response.data.message || 'There was an error adding your comment. Please try again.',
-                    timer: 2000,
-                });
-            } else {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Error',
-                    text: 'There was an error adding your comment. Please try again.',
-                    timer: 2000,
-                });
-            }
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: error.response?.data?.message || 'There was an error adding your comment. Please try again.',
+                timer: 2000,
+            });
         }
     };
-    
 
     return (
-        <form
+        <div>
+             <form
             onSubmit={handleAddComment}
             className="p-5 md:p-10 shadow-lg rounded-md flex flex-col w-full max-w-lg bg-gray-800"
         >
@@ -111,12 +97,22 @@ export default function AjouterCommentair({ filmId }) {
                     required
                 />
             </label>
+
+            
+
             <button
                 type="submit"
                 className="mt-4 bg-purple-500 text-white py-2 px-4 rounded-md shadow hover:bg-purple-600 transition-all"
             >
-                Submit
+                Send
             </button>
         </form>
+        <div className="m-5">
+        <AddRate filmId={filmId} /> 
+        </div>
+        
+        </div>
+       
+        
     );
 }
