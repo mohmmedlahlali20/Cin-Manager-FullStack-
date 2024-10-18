@@ -15,19 +15,25 @@ class RaitingService {
     }
 
 
-    async getRaitingsByFilmId(filmId) {
+    
+    
+    
+    
+    async  getRaitingsByFilmId(filmId) {
         const raitings = await raitingModel.find({ film: filmId });
     
         if (raitings.length === 0) {
-            return { raitings, avgRating: 0 };  
+            return 0;  
         }
     
-        const avgRating = raitings.reduce((acc, rating) => acc + (rating.rate || 0), 0) / raitings.length;
-        return { raitings, avgRating };
+   
+        const totalRating = raitings.reduce((sum, rating) => sum + rating.note, 0);
+    
+        const avgRating = totalRating / raitings.length;
+        console.log(avgRating);
+        
+        return avgRating;
     }
-    
-    
-    
 
 
 

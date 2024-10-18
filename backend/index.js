@@ -40,6 +40,7 @@ const seanceRoutes = require('./router/seanceRoutes')
 const favoriRoutes = require('./router/favorisRouters')
 const reservationRoutes = require('./router/reservtionRoutes')
 const raitingRoutes = require('./router/ratingRouter')
+const commentsRoutes = require('./router/commentRoutes')
 
 app.use('/api/auth', authRoutes);
 app.use('/api/salle' , salleRoutes);
@@ -47,7 +48,7 @@ app.use('/api/film', filmRoutes);
 app.use('/api/seance' , seanceRoutes)
 app.use('/api/favoris' , favoriRoutes)
 app.use('/api/reservtion' , reservationRoutes)
-
+app.use('/api/comments', commentsRoutes)
 app.use('/api/rating', raitingRoutes)
 
 app.listen(port, () => {
