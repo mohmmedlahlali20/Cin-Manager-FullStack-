@@ -71,7 +71,9 @@ export default function Movies() {
                             <a href="/films" className="block px-4 py-2 text-white hover:bg-gray-700 md:hover:bg-transparent">All Movies</a>
                         </li>
                         <li className="text-center md:text-left">
-                            <a href="/about" className="block px-4 py-2 text-white hover:bg-gray-700 md:hover:bg-transparent">fav</a>
+                            <a href="" className="block px-4 py-2 text-white hover:bg-gray-700 md:hover:bg-transparent">
+                            <span className="material-icons">account_circle</span>
+                            </a>
                         </li>
                         <li className="mt-2">
                             <button

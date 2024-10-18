@@ -17,16 +17,21 @@ class AuthService {
     return user;
   }
 
-
   async login(email, password) {
     const user = await User.findOne({ email });
+    
+    console.log(user);
+    
     const token = jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET);
-
     if (!user || !(await user.comparePassword(password))) {
-      throw new Error('Invalid email or password');
+        throw new Error('Invalid email or password');
     }
-    return {user , token};
-  }
+
+
+   
+    return { user, token };
+}
+
 
   async sendVerificationEmail(user) {
     const token = crypto.randomBytes(32).toString('hex');

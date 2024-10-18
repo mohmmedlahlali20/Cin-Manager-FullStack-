@@ -38,9 +38,15 @@ import {
 
 
 import {
-    NotFound
+    NotFound ,
+    Home
 } 
 from "../pages"
+
+import {
+    UserProfile
+}
+from "../Client/profile"
 
 const router = createBrowserRouter([
     {
@@ -78,8 +84,22 @@ const router = createBrowserRouter([
         ],
     },
     {
+        path : "/",
+        element: <Home />
+
+    },
+    {
+        path: "/me/:userId",
+        element : <UserProfile />
+
+    },
+    {
         path: "/films/:id",
         element: <MoviesDetails />
+    },
+    {
+        path: "/me/:id",
+        element: <UserProfile />
     },
     {
         path: "/seance/:id",
