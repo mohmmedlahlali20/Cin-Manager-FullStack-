@@ -1,4 +1,4 @@
-const commentairModel = require('../models/comments'); // Ensure the path is correct
+const commentairModel = require('../models/comments'); 
 
 class CommentaireService {
     async Addcomments(data) {
@@ -11,8 +11,6 @@ class CommentaireService {
         const comments = await commentairModel
         .find({ filmId })
         .populate('userId') 
-
-        console.log("service", comments);
         return comments;
     }
 }

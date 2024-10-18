@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import Swal from 'sweetalert2';
 import { jwtDecode } from 'jwt-decode';
-import {AjouterCommentair} from './commentair/index';
+import { AjouterCommentair, Comments } from './commentair/index';
 
 export default function MovieDetails() {
     const path = import.meta.env.VITE_BACK_END_URI;
@@ -82,7 +82,7 @@ export default function MovieDetails() {
                             alt={movie.title}
                             className="object-cover w-full h-full max-h-[400px] rounded-lg shadow-xl transform hover:scale-105 transition duration-300"
                         />
-                        <div className='mt-2'>
+                        <div className="mt-2">
                             <AjouterCommentair filmId={movie._id} />
                         </div>
                     </div>
@@ -91,7 +91,9 @@ export default function MovieDetails() {
                         <h1 className="text-5xl font-extrabold tracking-tight text-purple-200">{movie.title}</h1>
                         <p className="text-lg leading-relaxed text-gray-200">{movie.description}</p>
                         <div className="flex items-center space-x-6">
-                            <span className="px-4 py-1 text-sm font-semibold text-white bg-purple-600 rounded-full shadow-sm">{movie.genre}</span>
+                            <span className="px-4 py-1 text-sm font-semibold text-white bg-purple-600 rounded-full shadow-sm">
+                                {movie.genre}
+                            </span>
                             <span className="text-sm text-gray-300">Released: {new Date(movie.publishedDate).toLocaleDateString()}</span>
                         </div>
                         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
@@ -130,6 +132,10 @@ export default function MovieDetails() {
                                     />
                                 </svg>
                             </a>
+                        </div>
+                        <div>
+
+                        <Comments filmId={movie._id} />
                         </div>
                     </div>
                 </div>
