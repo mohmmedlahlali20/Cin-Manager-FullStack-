@@ -83,6 +83,20 @@ class AuthService {
     await user.save();
     return user;
   }
+ 
+
+  async updateUserProfile(userId, data) {
+    const updatedUser = await User.findByIdAndUpdate(userId, data, { new: true });
+    if (!updatedUser) throw new Error('User not found');
+    return updatedUser;
+  }
+
+  
+  async getUserProfile(userId) {
+    const user = await User.findById(userId);
+    if (!user) throw new Error('User not found');
+    return user;
+  }
 }
 
 module.exports = new AuthService();
