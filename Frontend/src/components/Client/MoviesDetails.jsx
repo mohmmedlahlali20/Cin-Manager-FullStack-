@@ -22,6 +22,8 @@ export default function MovieDetails() {
                         Authorization: `Bearer ${token}`,
                     },
                 });
+                console.log(response.data);
+                
                 setMovie(response.data);
             } catch (err) {
                 console.error('Error fetching movie details:', err);
@@ -99,10 +101,7 @@ export default function MovieDetails() {
                             <span className="text-sm text-gray-300">rating :  <GetRaitingByFilmId filmId={movie._id} />  </span>
                         </div>
                         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-                            <div>
-                                <h3 className="text-xl font-semibold text-purple-300">Director</h3>
-                                <p className="text-gray-300">{movie.director.firstname} {movie.director.lastname}</p>
-                            </div>
+                           
                         
                      
                         </div>

@@ -53,7 +53,6 @@ export default function Video() {
                     <div className="lg:w-1/3 w-full bg-gray-800 bg-opacity-75 p-6 rounded-lg">
                         <h1 className="text-4xl font-bold text-white mb-4">{movie.title}</h1>
                         <p className="text-gray-300 mb-2"><strong>Genre:</strong> {movie.genre}</p>
-                        <p className="text-gray-300 mb-2"><strong>Director:</strong> {movie.director.firstname} {movie.director.lastname}</p>
                         <p className="text-gray-300 mb-4"><strong>Published Date:</strong> {new Date(movie.publishedDate).toLocaleDateString()}</p>
                         <p className="text-gray-400 leading-relaxed">{movie.description}</p>
                     </div>

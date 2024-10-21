@@ -12,7 +12,8 @@ class FavorisService {
     async getFavorisByUserId(userId) {
         const userFavoris = await favorisModel.find({
             userId: userId
-        })  
+        }).populate('filmId')
+        .populate('userId')
     
         console.log("favoris found:", userFavoris);
         return userFavoris;

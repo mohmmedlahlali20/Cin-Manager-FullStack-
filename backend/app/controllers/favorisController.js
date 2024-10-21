@@ -30,9 +30,9 @@ exports.addFavoris = async (req, res) => {
 
 exports.getFavorisByUserId = async (req, res) => {
     try {
-       
+        const {userId} = req.params
 
-        const userFavoris = await favorisService.getFavorisByUserId(req.user.id);
+        const userFavoris = await favorisService.getFavorisByUserId(userId);
         console.log(userFavoris);
         res.status(200).json({ userFavoris });
     } catch (err) {

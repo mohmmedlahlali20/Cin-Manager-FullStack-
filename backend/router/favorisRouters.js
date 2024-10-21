@@ -14,7 +14,7 @@ const authMiddleware = require('../middleware/auth')
 
 router.post('/addFavoris/:filmId', authMiddleware, addFavoris);
 
-router.get('/getUserFavori', authMiddleware, getFavorisByUserId);
+router.get('/getUserFavori/:userId', authMiddleware, getFavorisByUserId);
 
 router.get('/getFavoris',authMiddleware, getFavoris)
 
