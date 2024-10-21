@@ -10,13 +10,18 @@ const router = express.Router();
 
 /**
  * @swagger
+ * tags:
+ *   name: Commentair
+ *   description: API pour la gestion des Commentair
+ *
+ * @swagger
  * /api/comments/addComment:
  *   post:
  *     summary: Ajouter un commentaire
- *     description: Cette route permet d'ajouter un commentaire à un film. Nécessite une authentification.
+ *     description: Cette route permet d'ajouter un commentaire à un film. Nécessite une authentification avec un token JWT.
  *     tags: [Commentaires]
  *     security:
- *       - bearerAuth: []
+ *       - bearerAuth: []  # Utilisation du token d'autorisation
  *     requestBody:
  *       required: true
  *       content:
@@ -44,6 +49,8 @@ const router = express.Router();
  *         description: Requête invalide
  *       401:
  *         description: Non autorisé, nécessite une authentification
+ *       403:
+ *         description: Accès refusé, permissions insuffisantes
  */
 router.post('/addComment', authMiddleware, addCommentaire);
 
@@ -52,10 +59,10 @@ router.post('/addComment', authMiddleware, addCommentaire);
  * /api/comments/getComments/{filmId}:
  *   get:
  *     summary: Obtenir les commentaires d'un film
- *     description: Cette route permet de récupérer les commentaires d'un film en fonction de son ID. Nécessite une authentification.
+ *     description: Cette route permet de récupérer les commentaires d'un film en fonction de son ID. Nécessite une authentification avec un token JWT.
  *     tags: [Commentaires]
  *     security:
- *       - bearerAuth: []
+ *       - bearerAuth: []  
  *     parameters:
  *       - in: path
  *         name: filmId
