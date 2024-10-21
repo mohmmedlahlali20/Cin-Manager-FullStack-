@@ -42,24 +42,23 @@ export default function Movies() {
 
     return (
         <>
-            <nav className="bg-gradient-to-r from-blue-300 to-purple-900">
-                <div className="container flex items-center justify-between px-4 py-4 mx-auto">
-                    <div className="text-xl font-bold text-white">
-                        <LogoSvg />
-                    </div>
-                    <div className="md:hidden">
-                        <button onClick={toggleMenu} className="text-white focus:outline-none">
-                            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
-                            </svg>
-                        </button>
-                    </div>
-                    <ul className={`md:flex md:items-center md:space-x-4 ${isOpen ? 'block' : 'hidden'} md:block`}>
-                        <li><a href="/" className="text-white">Home</a></li>
-                        <li><a href="/films" className="text-white">All Movies</a></li>
-                        <li><button onClick={handleLogout} className="text-white">Logout</button></li>
-                    </ul>
+            <nav className="bg-gradient-to-r from-blue-400 to-purple-900    mx-4 shadow-xl rounded-br-3xl rounded-bl-3xl hover:border-slate-400 sticky top-0 z-50">                <div className="container flex items-center justify-between px-2 py-1 mx-auto">
+                <div className="text-xl font-bold text-white">
+                    <LogoSvg />
                 </div>
+                <div className="md:hidden">
+                    <button onClick={toggleMenu} className="text-white focus:outline-none">
+                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
+                        </svg>
+                    </button>
+                </div>
+                <ul className={`md:flex md:items-center md:space-x-4 ${isOpen ? 'block' : 'hidden'} md:block`}>
+                    <li><a href="/" className="text-white">Home</a></li>
+                    <li><a href="/films" className="text-white">All Movies</a></li>
+                    <li><button onClick={handleLogout} className="text-white">Logout</button></li>
+                </ul>
+            </div>
             </nav>
 
             <section className="bg-gradient-to-r from-blue-400 to-purple-900">
@@ -87,11 +86,15 @@ export default function Movies() {
                                     </a>
                                     <div className="p-4">
                                         <h3 className="mb-2 text-xl font-bold text-white">{movie.title}</h3>
-                                        <p className="mb-4 text-white">{movie.description}</p>
+                                        <p className="mb-4 text-white">
+                                            {movie.description.length > 100
+                                                ? `${movie.description.substring(0, 100)}...`
+                                                : movie.description}
+                                        </p>
                                         <div className="flex items-center justify-between">
                                             <span className="px-2 py-1 text-xs font-bold text-white bg-blue-600 rounded">{movie.genre}</span>
                                             <span className="text-xs text-gray-200">{new Date(movie.publishedDate).toLocaleDateString()}
-                                            
+
                                             </span>
                                         </div>
                                     </div>

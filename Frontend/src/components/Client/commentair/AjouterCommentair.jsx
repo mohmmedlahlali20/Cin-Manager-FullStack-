@@ -81,7 +81,7 @@ export default function AjouterCommentair({ filmId }) {
             <div className="flex gap-2">
             <button
                 onClick={() => setIsModalOpen(true)}
-                className="mt-4 bg-purple-500 text-white py-2 px-4 rounded-md shadow hover:bg-purple-600 transition-all"
+                className="mt-4 bg-purple-600 text-white py-2 px-4 rounded-md shadow hover:bg-purple-600 transition-all"
             >
                 Ajouter un Commentaire
             </button>

@@ -28,7 +28,7 @@ export default function Comments({ filmId }) {
     }, [filmId]);
 
     return (
-        <div className="mx-auto border border-gray-800 rounded-lg bg-gray-900 shadow-lg overflow-hidden">
+        <div className="mx-auto  rounded-lg shadow-lg overflow-hidden">
             <div className="p-6">
                 <button
                     onClick={() => setIsOpen(!isOpen)}

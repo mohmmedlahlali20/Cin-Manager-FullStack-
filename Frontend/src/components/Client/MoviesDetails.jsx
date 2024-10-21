@@ -107,7 +107,7 @@ export default function MovieDetails() {
                             )}
                             <a
                                 href={`/seance/${movie._id}`}
-                                className="inline-block px-6 py-2 text-lg font-bold text-white bg-gray-700 rounded-lg shadow-lg transition-transform transform hover:bg-gray-800"
+                                className="inline-block px-6 py-2 text-lg font-bold text-white bg-purple-600 rounded-lg shadow-lg transition-transform transform hover:bg-gray-800"
                             >
                                 Reserve Now
                             </a>
@@ -117,7 +117,7 @@ export default function MovieDetails() {
                                     e.preventDefault();
                                     savedMovies();
                                 }}
-                                className="inline-flex items-center justify-center px-4 py-2 text-lg font-bold text-white bg-gray-700 rounded-lg shadow-lg transition-transform transform hover:bg-gray-800"
+                                className="inline-flex items-center justify-center px-4 py-2 text-lg font-bold text-white bg-purple-600 rounded-lg shadow-lg transition-transform transform hover:bg-gray-800"
                             >
                                 <svg className="w-5 h-5" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path
