@@ -5,7 +5,7 @@ import Cookies from 'js-cookie';
 import Swal from 'sweetalert2';
 import { jwtDecode } from 'jwt-decode';
 import { AjouterCommentair, Comments } from './commentair/index';
-import {GetRaitingByFilmId} from './rates'
+import { GetRaitingByFilmId } from './rates';
 
 export default function MovieDetails() {
     const path = import.meta.env.VITE_BACK_END_URI;
@@ -22,8 +22,6 @@ export default function MovieDetails() {
                         Authorization: `Bearer ${token}`,
                     },
                 });
-                console.log(response.data);
-                
                 setMovie(response.data);
             } catch (err) {
                 console.error('Error fetching movie details:', err);
@@ -36,18 +34,18 @@ export default function MovieDetails() {
     }, [id, token, path]);
 
     const savedMovies = async () => {
-        if (!token) return; 
+        if (!token) return;
 
         try {
             const user = jwtDecode(token);
             const response = await axios.post(
                 `${path}/favoris/addFavoris/${movie._id}`,
-                { userId: user.id }, 
+                { userId: user.id },
                 {
                     headers: {
                         accept: 'application/json',
                         Authorization: `Bearer ${token}`,
-                    }
+                    },
                 }
             );
 
@@ -76,45 +74,40 @@ export default function MovieDetails() {
     }
 
     return (
-        <section className="flex flex-col items-center justify-center min-h-screen p-8 text-white bg-gradient-to-r from-indigo-600 to-purple-700">
+        <section className="flex flex-col items-center justify-center min-h-screen p-8 bg-gradient-to-r from-blue-900 to-purple-800">
             <div className="container mx-auto">
-                <div className="flex flex-col lg:flex-row lg:space-x-12 lg:items-start animate-fadeIn">
+                <div className="flex flex-col lg:flex-row lg:space-x-10 lg:items-start animate-fadeIn">
                     <div className="mb-8 lg:w-1/3 lg:mb-0">
                         <img
                             src={`http://localhost:3000/${movie.image}`}
                             alt={movie.title}
-                            className="object-cover w-full h-full max-h-[400px] rounded-lg shadow-xl transform hover:scale-105 transition duration-300"
+                            className="object-cover w-full h-96 rounded-lg shadow-2xl transform hover:scale-105 transition-transform duration-300"
                         />
-                        <div className="mt-2">
+                        <div className="mt-4">
                             <AjouterCommentair filmId={movie._id} />
                         </div>
                     </div>
 
-                    <div className="space-y-8 lg:w-2/3">
-                        <h1 className="text-5xl font-extrabold tracking-tight text-purple-200">{movie.title}</h1>
-                        <p className="text-lg leading-relaxed text-gray-200">{movie.description}</p>
-                        <div className="flex items-center space-x-6">
-                            <span className="px-4 py-1 text-sm font-semibold text-white bg-purple-600 rounded-full shadow-sm">
-                                {movie.genre}
-                            </span>
-                            <span className="text-sm text-gray-300">Released: {new Date(movie.publishedDate).toLocaleDateString()}</span>
-                            <span className="text-sm text-gray-300">rating :  <GetRaitingByFilmId filmId={movie._id} />  </span>
+                    <div className="space-y-6 lg:w-2/3">
+                        <h1 className="text-5xl font-bold text-gray-100">{movie.title}</h1>
+                        <p className="text-lg text-gray-300 leading-relaxed">{movie.description}</p>
+                        <div className="flex items-center space-x-4">
+                            <span className="px-3 py-1 text-xs font-semibold text-blue-800 bg-blue-100 rounded-full">{movie.genre}</span>
+                            <span className="text-sm text-gray-200">Released: {new Date(movie.publishedDate).toLocaleDateString()}</span>
+                            <span className="text-sm text-gray-200">Rating: <GetRaitingByFilmId filmId={movie._id} /></span>
                         </div>
-                        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-                           
-                        
-                     
-                        </div>
-                        <div className="flex mt-10 space-x-6">
-                            <a
-                                href={`/watch/${movie._id}`}
-                                className="inline-block px-8 py-3 text-lg font-bold text-white transition-all bg-purple-600 rounded-full shadow-md hover:bg-purple-700 focus:ring-4 focus:ring-purple-400"
-                            >
-                                Watch Now
-                            </a>
+                        <div className="flex mt-6 space-x-4">
+                            {movie.vedio && (
+                                <a
+                                    href={`/watch/${movie._id}`}
+                                    className="inline-block px-6 py-2 text-lg font-bold text-white bg-purple-600 rounded-lg shadow-lg transition-transform transform hover:bg-purple-700"
+                                >
+                                    Watch Now
+                                </a>
+                            )}
                             <a
                                 href={`/seance/${movie._id}`}
-                                className="inline-block px-8 py-3 text-lg font-bold text-white transition-all bg-gray-600 rounded-full shadow-md hover:bg-gray-700 focus:ring-4 focus:ring-gray-400"
+                                className="inline-block px-6 py-2 text-lg font-bold text-white bg-gray-700 rounded-lg shadow-lg transition-transform transform hover:bg-gray-800"
                             >
                                 Reserve Now
                             </a>
@@ -124,9 +117,9 @@ export default function MovieDetails() {
                                     e.preventDefault();
                                     savedMovies();
                                 }}
-                                className="inline-block px-8 py-3 text-lg font-bold text-white transition-all bg-gray-600 rounded-full shadow-md hover:bg-gray-700 focus:ring-4 focus:ring-gray-400"
+                                className="inline-flex items-center justify-center px-4 py-2 text-lg font-bold text-white bg-gray-700 rounded-lg shadow-lg transition-transform transform hover:bg-gray-800"
                             >
-                                <svg width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <svg className="w-5 h-5" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path
                                         fillRule="evenodd"
                                         clipRule="evenodd"
@@ -136,10 +129,7 @@ export default function MovieDetails() {
                                 </svg>
                             </a>
                         </div>
-                        <div>
-
                         <Comments filmId={movie._id} />
-                        </div>
                     </div>
                 </div>
             </div>
