@@ -48,6 +48,12 @@ import {
 }
 from "../Client/profile"
 
+import Authorization from "./authorization";
+
+
+
+
+
 const router = createBrowserRouter([
     {
         element: <Layouts />,
@@ -82,6 +88,11 @@ const router = createBrowserRouter([
                 
             }
         ],
+    },
+    {
+        path : "/authorization",
+        element : <Authorization />
+
     },
     {
         path : "/",

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { jwtDecode } from "jwt-decode";
+import {jwtDecode} from "jwt-decode";
 import { useNavigate, Link } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import axios from 'axios';
@@ -23,15 +23,17 @@ function Login() {
         e.preventDefault();
         try {
             const response = await axios.post(`${path}/auth/login`, { email, password });
-            console.log(response.data.user.token);
-            
             const token = response.data.user.token;
-            console.log('Token:', token);
+
             if (token) {
                 Cookies.set('token', token);
                 const user = jwtDecode(token);
-                console.log(user.role);
-                
+
+                if (user.role === 'admin') {
+                    navigate('/admin');
+                } else {
+                    navigate('/movies');
+                }
             } else {
                 setError('No token found. Please try logging in again.');
             }
@@ -45,9 +47,6 @@ function Login() {
         if (token) {
             try {
                 const user = jwtDecode(token);
-                console.log("decoded token" , user);
-                console.log(" fucking role" ,user.role);
-                
                 if (user.role === 'admin') {
                     navigate('/admin');
                 } else {
