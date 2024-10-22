@@ -30,6 +30,12 @@ const Home = () => {
             description: "Tokyo Ghoul S2",
             videoSrc: "../../../assets/video/keneki.mp4",
         },
+        {
+            id: 4,
+            title: "Akaza vs Rengoku",
+            description: "Kimitsu no naiba S2",
+            videoSrc: "../../../assets/video/hero_banner.mp4",
+        },
     ];
 
     const movies = [
@@ -43,13 +49,13 @@ const Home = () => {
             id: 2,
             title: "Game Of Thrones",
             description: "A thrilling experience.",
-            img: "src/assets/films/GameOfThrones.png",
+            img: "../../../assets/img/coco.jpg",
         },
         {
             id: 3,
             title: "Movie 3",
             description: "An emotional journey.",
-            img: "src/assets/films/img.png",
+            img: "../../../assets/img/coco.jpg",
         },
     ];
 
@@ -70,7 +76,7 @@ const Home = () => {
             <section className="relative h-screen flex items-center justify-center">
                 <video
                     className="absolute inset-0 object-cover w-full h-full"
-                    src="../../../assets/video/hero_banner.mp4"
+                    src="../../../assets/video/keneki.mp4"
                     autoPlay
                     loop
                     muted
@@ -104,7 +110,7 @@ const Home = () => {
                         loop
                         navigation
                         pagination={{ clickable: true }}
-                        autoplay={{ delay: 3000 }}
+                        autoplay={{ delay: 8000 }}
                         effect="coverflow"
                         coverflowEffect={{
                             rotate: 50,
@@ -121,9 +127,11 @@ const Home = () => {
                                     <video
                                         src={video.videoSrc}
                                         alt={video.title}
+                                        className="object-cover w-full h-92 opacity-80 hover:opacity-100 transition-opacity duration-300"
                                         autoPlay
-                                        className="object-cover w-full h-72 opacity-80 hover:opacity-100 transition-opacity duration-300"
-                                        controls
+                                        loop
+                                        muted
+                                        playsInline
                                     />
                                     <div className="absolute inset-0 bg-black bg-opacity-60 flex flex-col justify-center items-center opacity-0 hover:opacity-100 transition-opacity duration-300">
                                         <h2 className="text-3xl font-bold text-teal-400">{video.title}</h2>
