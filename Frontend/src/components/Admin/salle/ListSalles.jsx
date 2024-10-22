@@ -29,9 +29,9 @@ export default function ListSalles() {
 
     return (
         <div className="overflow-x-auto">
-            <table className="min-w-full table-auto bg-white border border-gray-200">
+            <table className="min-w-full table-auto bg-teal-500 border border-gray-200">
                 <thead>
-                    <tr className="bg-purple-200">
+                    <tr className="bg-teal-200">
                         <th className="py-2 px-4 border-b text-left">Name</th>
                         <th className="py-2 px-4 border-b text-left">Capacite</th>
                         <th className="py-2 px-4 border-b text-left">
@@ -47,14 +47,14 @@ export default function ListSalles() {
                         </tr>
                     ) : (
                         salles.map((salle) => (
-                            <tr key={salle._id} className="hover:bg-gray-100">
+                            <tr key={salle._id} className="hover:bg-teal-200">
                             <td className="py-2 px-4 border-b">{salle.name}</td>
                             <td className="py-2 px-4 border-b">{salle.capacite}</td>
                             <td className="py-2 px-4 border-b">
-                                <button className="px-3 py-1 bg-purple-500 text-white rounded hover:bg-purple-700 focus:outline-none focus:ring">
+                                <button className="px-3 py-1 bg-teal-500 text-white rounded hover:bg-teal-700 focus:outline-none focus:ring">
                                     Edit
                                 </button>
-                                <button className="px-3 py-1 ml-2 bg-purple-800 text-white rounded hover:bg-purple-800 focus:outline-none focus:ring">
+                                <button className="px-3 py-1 ml-2 bg-teal-800 text-white rounded hover:bg-teal-800 focus:outline-none focus:ring">
                                     Delete
                                 </button>
                             </td>

@@ -33,9 +33,9 @@ export default function ListSeances() {
 
     return (
         <div className="overflow-x-auto">
-        <table className="min-w-full table-auto bg-white border border-gray-200">
+        <table className="min-w-full table-auto bg-teal-500 border border-teal-200">
             <thead>
-                <tr className="bg-purple-200">
+                <tr className="bg-teal-200">
                     <th className="py-2 px-4 border-b text-left">Nom</th>
                     <th className="py-2 px-4 border-b text-left">Film</th>
                     <th className="py-2 px-4 border-b text-left">Salle</th>
@@ -51,7 +51,7 @@ export default function ListSeances() {
                     </tr>
                 ) : (
                     seances.map((seance) => (
-                        <tr key={seance._id} className="hover:bg-gray-100">
+                        <tr key={seance._id} className="hover:bg-teal-100">
                             <td className="py-2 px-4 border-b">{seance.name}</td>
                             <td className="py-2 px-4 border-b">{seance.filmId?.title }</td>
                             <td className="py-2 px-4 border-b">{seance.salleId?.name }</td>
