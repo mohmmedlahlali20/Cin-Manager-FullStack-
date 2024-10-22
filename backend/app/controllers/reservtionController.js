@@ -9,7 +9,7 @@ exports.addReservation = async (req, res) => {
         console.log(req.body);
         
         if (!userId|| !seanceId) {
-            return res.status(400).json({ message: ' userId, seanceId are required.' });
+            return res.status(400).json({ msg: ' userId, seanceId are required.' });
         }
         const reservationData = {
             userId,
