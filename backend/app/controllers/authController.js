@@ -50,3 +50,13 @@ exports.resetPassword = async (req, res) => {
   }
 };
 
+exports.Profile = async function (req, res) {
+  try {
+    const {userId} = req.params
+    const user = await authService.getUserProfile(userId);
+    res.status(200).json({ user });
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+}
+

@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const connectDB = require('./config/db');
+const { swaggerDocs, swaggerUi } = require('./config/swgger');
 
 const path = require('path');
 const dotenv = require('dotenv');
@@ -17,6 +18,9 @@ app.use(express.urlencoded({ extended: true }));
 const port = process.env.PORT || 3000;
 
 app.use(cors());
+
+
+swaggerDocs(app);
 
 
 

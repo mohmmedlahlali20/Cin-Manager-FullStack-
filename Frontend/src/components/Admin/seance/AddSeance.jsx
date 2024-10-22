@@ -9,7 +9,7 @@ export default function AddSeance() {
         name: "",
         start_date: "",
         end_date: "",
-        filmId: "", 
+        filmId: "",
         salleId: ""
     });
     const [Films, setFilms] = useState([]);
@@ -30,7 +30,7 @@ export default function AddSeance() {
                 },
             });
             console.log(response.data.salles);
-            setSalles(response.data.salles); 
+            setSalles(response.data.salles);
         } catch (err) {
             console.error("Error fetching salles:", err.response ? err.response.data : err.message);
         }
@@ -44,7 +44,7 @@ export default function AddSeance() {
                     Authorization: `Bearer ${token}`,
                 },
             });
-            setFilms(response.data.films); 
+            setFilms(response.data.films);
         } catch (err) {
             console.error("Error fetching films:", err.response ? err.response.data : err.message);
         }
@@ -70,12 +70,12 @@ export default function AddSeance() {
             return;
         }
 
-        console.log(formData); 
+        console.log(formData);
 
         try {
             const response = await axios.post(`${path}/seance/addSeance`, formData, {
                 headers: {
-                    'Content-Type': 'application/json', 
+                    'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}`,
                 }
             });
@@ -106,18 +106,18 @@ export default function AddSeance() {
     };
 
     return (
-        <div className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-md">
-            <h2 className="text-2xl font-semibold mb-4">Ajouter une Séance</h2>
+        <div className="max-w-md mx-auto p-6 bg-gradient-to-r from-teal-400 to-teal-600 rounded-lg shadow-md">
+            <h2 className="text-2xl font-semibold mb-4 text-white text-center">Ajouter une Séance</h2>
             <form onSubmit={handleSubmit}>
                 <div className="mb-4">
-                    <label className="block text-gray-700" htmlFor="filmId">Sélectionnez un Film</label>
+                    <label className="block text-gray-200" htmlFor="filmId">Sélectionnez un Film</label>
                     <select
                         id="filmId"
                         name="filmId"
                         value={formData.filmId}
                         onChange={handleChange}
                         required
-                        className="mt-1 block w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-blue-500"
+                        className="mt-1 block w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-teal-300"
                     >
                         <option value="">Sélectionnez un film</option>
                         {Films.map((film) => (
@@ -128,14 +128,14 @@ export default function AddSeance() {
                     </select>
                 </div>
                 <div className="mb-4">
-                    <label className="block text-gray-700" htmlFor="salleId">Sélectionnez une Salle</label>
+                    <label className="block text-gray-200" htmlFor="salleId">Sélectionnez une Salle</label>
                     <select
                         id="salleId"
-                        name="salleId" 
+                        name="salleId"
                         value={formData.salleId}
                         onChange={handleChange}
                         required
-                        className="mt-1 block w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-blue-500"
+                        className="mt-1 block w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-teal-300"
                     >
                         <option value="">Sélectionnez une salle</option>
                         {salles.map((salle) => (
@@ -146,7 +146,7 @@ export default function AddSeance() {
                     </select>
                 </div>
                 <div className="mb-4">
-                    <label className="block text-gray-700" htmlFor="name">Nom</label>
+                    <label className="block text-gray-200" htmlFor="name">Nom</label>
                     <input
                         type="text"
                         id="name"
@@ -154,11 +154,11 @@ export default function AddSeance() {
                         value={formData.name}
                         onChange={handleChange}
                         required
-                        className="mt-1 block w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-blue-500"
+                        className="mt-1 block w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-teal-300"
                     />
                 </div>
                 <div className="mb-4">
-                    <label className="block text-gray-700" htmlFor="start_date">Date de Début</label>
+                    <label className="block text-gray-200" htmlFor="start_date">Date de Début</label>
                     <input
                         type="date"
                         id="start_date"
@@ -166,11 +166,11 @@ export default function AddSeance() {
                         value={formData.start_date}
                         onChange={handleChange}
                         required
-                        className="mt-1 block w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-blue-500"
+                        className="mt-1 block w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-teal-300"
                     />
                 </div>
                 <div className="mb-4">
-                    <label className="block text-gray-700" htmlFor="end_date">Date de Fin</label>
+                    <label className="block text-gray-200" htmlFor="end_date">Date de Fin</label>
                     <input
                         type="date"
                         id="end_date"
@@ -178,16 +178,17 @@ export default function AddSeance() {
                         value={formData.end_date}
                         onChange={handleChange}
                         required
-                        className="mt-1 block w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-blue-500"
+                        className="mt-1 block w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-teal-300"
                     />
                 </div>
                 <button
                     type="submit"
-                    className="w-full bg-blue-500 text-white rounded py-2 hover:bg-blue-600 transition duration-200"
+                    className="w-full bg-teal-800 text-white rounded py-2 hover:bg-teal-700 transition duration-200"
                 >
                     Ajouter
                 </button>
             </form>
         </div>
+
     );
 }

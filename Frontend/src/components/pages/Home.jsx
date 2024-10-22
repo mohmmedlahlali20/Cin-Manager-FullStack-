@@ -4,105 +4,113 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/effect-coverflow';
-import {useEffect} from "react";
-import {useNavigate} from "react-router-dom";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 
 const Home = () => {
-
     const navigate = useNavigate();
 
-
-    const logos = [
+    const Videos = [
         {
             id: 1,
-            title: "Movie 1",
-            description: "An exciting movie adventure.",
-            img: "assets/img/Netflix.png",
+            title: "Gyomei vs Muzan",
+            description: "kimitsu no yaiba",
+            videoSrc: "../../../assets/video/demon.mp4",
         },
         {
             id: 2,
-            title: "Movie 2",
-            description: "A thrilling experience.",
-            img: "assets/img/Netflix.png",
+            title: "Eren vs Armin",
+            description: "Attack on titan S4",
+            videoSrc: "../../../assets/video/eren.mp4",
         },
         {
             id: 3,
-            title: "Movie 3",
-            description: "An emotional journey.",
-            img: "assets/img/Netflix.png",
+            title: "Keneki vs Jason",
+            description: "Tokyo Ghoul S2",
+            videoSrc: "../../../assets/video/keneki.mp4",
+        },
+        {
+            id: 4,
+            title: "Akaza vs Rengoku",
+            description: "Kimitsu no naiba S2",
+            videoSrc: "../../../assets/video/hero_banner.mp4",
         },
     ];
 
     const movies = [
         {
             id: 1,
-            title: "prison Break",
+            title: "COCO",
             description: "An exciting movie adventure.",
-            img: "src/assets/films/prisonBreak.png",
+            img: "../../../assets/img/coco.jpg",
         },
         {
             id: 2,
             title: "Game Of Thrones",
             description: "A thrilling experience.",
-            img: "src/assets/films/GameOfThrones.png",
+            img: "../../../assets/img/coco.jpg",
         },
         {
             id: 3,
             title: "Movie 3",
             description: "An emotional journey.",
-            img: "src/assets/films/img.png",
+            img: "../../../assets/img/coco.jpg",
         },
     ];
 
-
     useEffect(() => {
-        const token = Cookies.get('token')
-        console.log('token lmli7', token)
+        const token = Cookies.get('token');
         if (!token) {
-            navigate('/login')
+            navigate('/login');
         }
+    });
 
-    })
     const handleButtonClick = () => {
-        const token = Cookies.get('token')
-        console.log("toekn: " , token)
-        navigate('/cinema')
-       
-
-
+        navigate('/movies');
     };
 
-
-
-
     return (
-        <div className="bg-gray-900 text-white">
+        <div className="bg-black text-white min-h-screen">
 
-            <section className="hero h-screen relative flex items-center justify-center">
-                <div className="absolute inset-0 bg-gradient-to-r from-indigo-600 to-purple-700 z-10"></div>
-                <div className="z-20 text-center space-y-5 px-6">
-                    <h1 className="text-5xl font-bold drop-shadow-lg">Welcome to Cinema World</h1>
-                    <p className="text-lg max-w-md mx-auto">
-                        Experience the latest movies in high definition with state-of-the-art sound.
+            <section className="relative h-screen flex items-center justify-center">
+                <video
+                    className="absolute inset-0 object-cover w-full h-full"
+                    src="../../../assets/video/keneki.mp4"
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                ></video>
+
+                <div className="absolute inset-0 bg-black bg-opacity-50"></div>
+
+                <div className="z-20 text-center space-y-6 px-8">
+                    <h1 className="text-6xl font-extrabold text-white tracking-widest drop-shadow-md">Cinema World</h1>
+                    <p className="text-2xl text-gray-400 max-w-lg mx-auto">
+                        Enjoy the latest movies with premium sound and picture quality.
                     </p>
-                    <button onClick={handleButtonClick} className="bg-red-600 hover:bg-red-700 px-8 py-3 rounded-full text-lg">
+                    <button
+                        onClick={handleButtonClick}
+                        className="bg-teal-500 hover:bg-teal-600 text-black font-bold px-10 py-4 rounded-full shadow-lg transition-transform transform hover:scale-110">
                         Book Tickets Now
                     </button>
                 </div>
             </section>
 
-            <section className="py-16 bg-gradient-to-r from-indigo-600 to-purple-800">
-                <div className="max-w-6xl mx-auto">
+
+
+            <section className="py-16 bg-gradient-to-b from-black to-gray-900">
+                <div className="max-w-7xl mx-auto px-6">
                     <Swiper
                         modules={[Autoplay, Navigation, Pagination, EffectCoverflow]}
-                        spaceBetween={30}
-                        slidesPerView={1.5}
+                        spaceBetween={40}
+                        slidesPerView={1.2}
                         centeredSlides
                         loop
                         navigation
                         pagination={{ clickable: true }}
-                        autoplay={{ delay: 3000 }}
+                        autoplay={{ delay: 8000 }}
                         effect="coverflow"
                         coverflowEffect={{
                             rotate: 50,
@@ -113,17 +121,21 @@ const Home = () => {
                         }}
                         className="movie-slider"
                     >
-                        {logos.map((logo) => (
-                            <SwiperSlide key={logo.id}>
-                                <div className="logo-slide relative overflow-hidden rounded-xl  shadow-lg">
-                                    <img
-                                        src={logo.img}
-                                        alt={logo.title}
-                                        className="object-cover w-full h-full opacity-80 hover:opacity-100 transition-opacity duration-300"
+                        {Videos.map((video) => (
+                            <SwiperSlide key={video.id}>
+                                <div className="relative overflow-hidden rounded-xl shadow-lg hover:scale-105 transform transition duration-500">
+                                    <video
+                                        src={video.videoSrc}
+                                        alt={video.title}
+                                        className="object-cover w-full h-92 opacity-80 hover:opacity-100 transition-opacity duration-300"
+                                        autoPlay
+                                        loop
+                                        muted
+                                        playsInline
                                     />
-                                    <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center opacity-0 hover:opacity-100 transition-opacity duration-300">
-                                        <h2 className="text-3xl font-semibold">{logo.title}</h2>
-                                        <p className="mt-3 text-lg">{logo.description}</p>
+                                    <div className="absolute inset-0 bg-black bg-opacity-60 flex flex-col justify-center items-center opacity-0 hover:opacity-100 transition-opacity duration-300">
+                                        <h2 className="text-3xl font-bold text-teal-400">{video.title}</h2>
+                                        <p className="mt-4 text-gray-300">{video.description}</p>
                                     </div>
                                 </div>
                             </SwiperSlide>
@@ -132,20 +144,20 @@ const Home = () => {
                 </div>
             </section>
 
-            <section className="py-16 bg-gradient-to-r from-indigo-600 to-blue-900">
-                <div className="max-w-6xl mx-auto px-6">
-                    <h2 className="text-4xl font-semibold text-center mb-12">Upcoming Movies</h2>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+            <section className="py-16 bg-gray-900">
+                <div className="max-w-7xl mx-auto px-6">
+                    <h2 className="text-4xl font-bold text-center mb-12 text-teal-500">Upcoming Movies</h2>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-12">
                         {movies.map((movie) => (
-                            <div key={movie.id} className="movie-card bg-bleu-900 p-4 rounded-lg shadow-md hover:scale-105 transition-transform">
+                            <div key={movie.id} className="movie-card bg-gray-800 p-6 rounded-lg shadow-lg hover:scale-105 transition-transform duration-300">
                                 <img
                                     src={movie.img}
                                     alt={movie.title}
-                                    className="w-full h-30 object-cover rounded-lg mb-4"
+                                    className="w-full h-56 object-cover rounded-md mb-6"
                                 />
-                                <h3 className="text-2xl font-bold">{movie.title}</h3>
-                                <p className="mt-2 text-sm text-gray-400">{movie.description}</p>
-                                <button className="mt-4 bg-blue-600 px-4 py-2 rounded-full text-sm hover:bg-blue-700">
+                                <h3 className="text-2xl font-semibold text-teal-400">{movie.title}</h3>
+                                <p className="mt-4 text-gray-400">{movie.description}</p>
+                                <button className="mt-6 bg-teal-500 hover:bg-teal-600 text-black font-semibold px-6 py-3 rounded-full shadow-lg transition-all duration-300">
                                     Book Now
                                 </button>
                             </div>

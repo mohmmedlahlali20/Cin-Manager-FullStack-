@@ -61,14 +61,14 @@ export default function AllMovies() {
     };
 
     return (
-        <section className="py-16 bg-gray-50">
+        <section className="py-16 ">
             <div className="container mx-auto px-4">
-                <h2 className="mb-8 text-4xl font-bold text-center text-gray-800">All Movies</h2>
+                <h2 className="mb-8 text-4xl font-bold text-center text-teal-800">All Movies</h2>
 
-                <div className="overflow-x-auto shadow-lg rounded-lg bg-white">
+                <div className="overflow-x-auto shadow-lg rounded-lg bg-teal-500">
                     <table className="min-w-full text-left text-gray-600">
                         <thead>
-                            <tr className="bg-gray-200">
+                            <tr className="bg-teal-200">
                                 <th className="px-6 py-3 font-bold text-gray-700">Image</th>
                                 <th className="px-6 py-3 font-bold text-gray-700">Title</th>
                                 <th className="px-6 py-3 font-bold text-gray-700">Release Date</th>
@@ -79,7 +79,7 @@ export default function AllMovies() {
                         <tbody>
                             {movies.length > 0 ? (
                                 movies.map((movie) => (
-                                    <tr key={movie._id} className="border-b hover:bg-gray-100 transition duration-300 ease-in-out">
+                                    <tr key={movie._id} className="border-b hover:bg-teal-300 transition duration-300 ease-in-out">
                                         <td className="px-6 py-4">
                                             <img
                                                 className="w-24 h-36 object-cover rounded-lg shadow-md"
@@ -97,7 +97,7 @@ export default function AllMovies() {
                                                 "Yes"
                                             ) : (
                                                 <button
-                                                    className="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                                                    className="px-4 py-2 text-white bg-teal-500 rounded hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-400"
                                                     onClick={() => togglePopup(movie)}
                                                 >
                                                     Ajouter
@@ -117,7 +117,7 @@ export default function AllMovies() {
 
                 {showPopup && (
                     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-                        <div className="bg-white p-6 rounded-lg shadow-lg">
+                        <div className="bg-teal-300 p-6 rounded-lg shadow-lg">
                             <h3 className="mb-4 text-xl font-bold">Upload Video for {selectedMovie?.title}</h3>
                             <input
                                 type="file"
@@ -128,7 +128,7 @@ export default function AllMovies() {
                             <div className="flex justify-end space-x-4">
                                 <button
                                     onClick={() => setShowPopup(false)}
-                                    className="px-4 py-2 text-white bg-purple-500 rounded hover:bg-purple-200 transition duration-200 ease-in-out"
+                                    className="px-4 py-2 text-white bg-teal-500 rounded hover:bg-teal-200 transition duration-200 ease-in-out"
                                 >
                                     <svg fill="#ffffff" height="20px" width="20px" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink"
                                         viewBox="0 0 492 492" xmlSpace="preserve">
@@ -147,7 +147,7 @@ export default function AllMovies() {
                                 </button>
                                 <button
                                     onClick={handleVideoUpload}
-                                    className="px-4 py-2 text-white bg-purple-900 rounded hover:bg-purple-200 transition duration-200 ease-in-out"
+                                    className="px-4 py-2 text-white bg-teal-900 rounded hover:bg-teal-200 transition duration-200 ease-in-out"
                                 >
                                     <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M7 12L12 12M12 12L17 12M12 12V7M12 12L12 17" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />

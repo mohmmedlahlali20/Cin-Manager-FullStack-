@@ -8,11 +8,7 @@ const reservationSchela = new mongoss.Schema({
         ref: 'User',
         required: true
     },
-    // salleId: {
-    //     type: mongoss.Schema.Types.ObjectId,
-    //     ref: 'Salle',
-    //     required: true
-    // },
+
     seanceId: {
         type: mongoss.Schema.Types.ObjectId,
         ref: 'Seance',

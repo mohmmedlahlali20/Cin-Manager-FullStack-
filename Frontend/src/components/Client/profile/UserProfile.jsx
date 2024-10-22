@@ -1,36 +1,70 @@
 import Cookies from 'js-cookie';
-import jwtDecode from 'jwt-decode';  
 import { useState, useEffect } from 'react';
+import axios from 'axios';
 import Swal from 'sweetalert2';
+import { useParams } from 'react-router-dom';
 
 export default function UserProfile() {
     const [user, setUser] = useState(null);
+    const [favorit, setFavorit] = useState([]);
+    const path = import.meta.env.VITE_BACK_END_URI;
     const [loading, setLoading] = useState(true);
+    const { userId } = useParams();
+    const token = Cookies.get('token');
 
-    useEffect(() => {
-       
-        const token = Cookies.get('token');
+    const defaultAvatar = "https://via.placeholder.com/150?text=No+Avatar";
 
-        if (token) {
-            try {
-                const decoded = jwtDecode(token);
-                console.log(decoded);
-                
-                setUser(decoded);  
-            } catch (err) {
-                console.error("Failed to decode token", err);
-                Swal.fire('Error', 'Invalid token', 'error');
-            } finally {
-                setLoading(false);
-            }
-        } else {
-            Swal.fire('Error', 'No token found', 'error');
+    const userProfil = async () => {
+        try {
+            const response = await axios.get(`${path}/auth/me/${userId}`, {
+                headers: {
+                    'accept': 'application/json',
+                    Authorization: `Bearer ${token}`,
+                }
+            });
+            setUser(response.data.user);
+        } catch (err) {
+            Swal.fire({
+                icon: 'error',
+                title: `Oops... ${err}`,
+                text: 'Something went wrong!',
+            });
+        } finally {
             setLoading(false);
         }
+    };
+
+    const UserFavorit = async () => {
+        try {
+            const response = await axios.get(`${path}/favoris/getUserFavori/${userId}`, {
+                headers: {
+                    'accept': 'application/json',
+                    Authorization: `Bearer ${token}`,
+                }
+            });
+            setFavorit(response.data.userFavoris);
+        } catch (err) {
+            Swal.fire({
+                icon: 'error',
+                title: `Oops... ${err}`,
+                text: 'Something went wrong!',
+            });
+        }
+    };
+
+    useEffect(() => {
+        userProfil();
+        UserFavorit();
     }, []);
 
     if (loading) {
-        return <div>Loading...</div>;
+        return (
+            <div className="flex justify-center items-center h-screen gap-5">
+                <div className="w-4 h-4 rounded-full bg-teal-500 animate-bounce"></div>
+                <div className="w-4 h-4 rounded-full bg-teal-500 animate-bounce [animation-delay:-.3s]"></div>
+                <div className="w-4 h-4 rounded-full bg-teal-500 animate-bounce [animation-delay:-.5s]"></div>
+            </div>
+        );
     }
 
     if (!user) {
@@ -38,11 +72,85 @@ export default function UserProfile() {
     }
 
     return (
-        <div className="profile-container">
-            <h1>User Profile</h1>
-            <p><strong>Name:</strong> {user.name}</p>
-            <p><strong>Email:</strong> {user.email}</p>
-            {/* Add more fields as needed */}
+        <div className="p-6 bg-gray-900 min-h-screen text-gray-300">
+            <div className="lg:flex gap-12">
+                <div className="lg:w-1/3 h-auto bg-teal-800 text-white shadow-2xl rounded-2xl p-8 mb-12 lg:mb-0 transition-transform transform hover:-translate-y-1 hover:shadow-lg">
+                    <h1 className="text-4xl font-extrabold mb-8 text-teal-200 tracking-widest uppercase">Profile</h1>
+
+                    <div className="space-y-8">
+                        <div className="flex justify-center">
+                            <img
+                                src={defaultAvatar}
+                                alt="User Avatar"
+                                className="w-40 h-40 rounded-full shadow-xl object-cover ring-4 ring-teal-300 hover:scale-105 transition-transform duration-300"
+                            />
+                        </div>
+
+                        <div className="space-y-6 text-lg">
+                            <p className="font-semibold">
+                                <span className="text-teal-400">Email:</span> {user.email}
+                            </p>
+                            <p className="font-semibold">
+                                <span className="text-teal-400">First Name:</span> {user.firstname}
+                            </p>
+                            <p className="font-semibold">
+                                <span className="text-teal-400">Last Name:</span> {user.lastname}
+                            </p>
+                            <p className="font-semibold">
+                                <span className="text-teal-400">Date of Birth:</span> {new Date(user.dateOfBirth).toLocaleDateString()}
+                            </p>
+                            <p className="font-semibold">
+                                <span className="text-teal-400">Verified:</span> {user.isVerified ? 'Yes' : 'No'}
+                            </p>
+                        </div>
+
+                        <div className="mt-8 flex justify-center">
+                            <button className="bg-teal-600 text-white font-bold py-2 px-6 rounded-lg shadow-lg hover:bg-teal-700 transition-colors">
+                                Edit Profile
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div className="lg:w-2/3 bg-gray-800 text-white shadow-2xl rounded-2xl p-8 transition-transform transform hover:shadow-xl">
+                    <h2 className="text-3xl font-extrabold mb-6 text-teal-300 tracking-wide">Favorite Films</h2>
+
+                    <div className="flex flex-wrap gap-8 p-4 max-h-[500px] overflow-y-auto scrollbar-thin scrollbar-thumb-teal-600">
+                        {favorit.map((film) => (
+                            <div key={film._id} className="bg-gray-800 w-50 sm:w-1/2 lg:w-1/3 p-6 rounded-xl shadow-lg transition-transform transform hover:-rotate-2 hover:scale-105 hover:bg-gray-600">
+                                {film.filmId && film.filmId.image ? (
+                                    <img
+                                        src={`http://localhost:3000/${film.filmId.image}`}
+                                        alt={film.title}
+                                        className="w-full h-48 object-cover rounded-md mb-4 shadow-md"
+                                    />
+                                ) : (
+                                    <div className="w-full h-48 bg-gray-500 rounded-md mb-4 flex items-center justify-center">
+                                        <span className="text-gray-300">No Image Available</span>
+                                    </div>
+                                )}
+
+                                <h3 className="text-xl font-bold text-teal-300">{film.title}</h3>
+                                <p className="text-sm text-gray-400 mt-1"><strong>Genre:</strong> {film.filmId.genre}</p>
+                                <p className="text-sm text-gray-400"><strong>Published:</strong> {new Date(film.filmId.publishedDate).toLocaleDateString()}</p>
+                                <p className="text-sm text-gray-300 mt-2">{film.description}</p>
+
+                                <a
+                                    href={`/watch/${film.filmId._id}`}
+                                    className="inline-block mt-4 text-teal-400 hover:text-teal-600 transition-colors font-semibold"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    Watch Movie
+                                </a>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+
+
+            </div>
         </div>
+
+
     );
 }
