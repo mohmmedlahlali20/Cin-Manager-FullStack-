@@ -34,14 +34,14 @@ export default function Video() {
     }
 
     return (
-        <section className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-r from-gray-900 via-purple-900 to-black">
-            <div className="container mx-auto px-6 py-12">
-                <div className="flex flex-col lg:flex-row lg:space-x-12 items-center">
+        <section className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-r from-teal-900 via-teal-700 to-black">
+            <div className="container mx-auto px-4 py-12">
+                <div className="flex flex-col lg:flex-row lg:space-x-8 items-center">
                     <div className="lg:w-2/3 w-full mb-8 lg:mb-0">
                         <div className="relative shadow-2xl rounded-lg overflow-hidden">
-                            <video 
-                                className="w-full h-auto rounded-lg"
-                                controls 
+                            <video
+                                className="w-full h-auto rounded-lg transition-transform transform hover:scale-105"
+                                controls
                                 poster={movie.image}
                             >
                                 <source src={movie.movies} type="video/mp4" />
@@ -49,13 +49,22 @@ export default function Video() {
                             </video>
                         </div>
                     </div>
-                    
-                    <div className="lg:w-1/3 w-full bg-gray-800 bg-opacity-75 p-6 rounded-lg">
-                        <h1 className="text-4xl font-bold text-white mb-4">{movie.title}</h1>
-                        <p className="text-gray-300 mb-2"><strong>Genre:</strong> {movie.genre}</p>
-                        <p className="text-gray-300 mb-4"><strong>Published Date:</strong> {new Date(movie.publishedDate).toLocaleDateString()}</p>
+
+                    <div className="lg:w-1/3 w-full bg-teal-800 bg-opacity-90 p-6 rounded-lg shadow-lg">
+                        <h1 className="text-4xl font-bold text-white mb-2 transition-colors duration-300 hover:text-teal-400">{movie.title}</h1>
+                        <p className="text-gray-300 mb-1"><strong>Genre:</strong> {movie.genre}</p>
+                        <p className="text-gray-300 mb-3"><strong>Published Date:</strong> {new Date(movie.publishedDate).toLocaleDateString()}</p>
                         <p className="text-gray-400 leading-relaxed">{movie.description}</p>
+
+                        
+                        <button
+                            onClick={() => window.history.back()}
+                            className="mt-4 bg-teal-600 text-white py-2 px-4 rounded-md shadow hover:bg-teal-500 transition-all"
+                        >
+                            Back
+                        </button>
                     </div>
+
                 </div>
             </div>
         </section>

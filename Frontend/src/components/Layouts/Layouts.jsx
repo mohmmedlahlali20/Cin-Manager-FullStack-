@@ -8,16 +8,17 @@ import ProtectedRoute from "../routes/protected.routes";
 export default function Layouts() {
     return (
         <ProtectedRoute>
-            <div className="flex min-h-screen bg-gray-50">
-                <Sidebar />
-                <div className="flex flex-col justify-between flex-grow bg-white shadow-md">
-                    <main className="flex-grow p-6 md:p-8">
-                        <Outlet />
-                    </main>
-                    <Footer />
-                </div>
+        <div className="flex min-h-screen bg-gray-900">
+            <Sidebar />
+            <div className="flex flex-col justify-between flex-grow  shadow-lg rounded-l-lg overflow-hidden">
+                <main className="flex-grow p-6 md:p-8">
+                    <Outlet />
+                </main>
+                <Footer />
             </div>
-        </ProtectedRoute>
+        </div>
+    </ProtectedRoute>
+    
 
     )
 }

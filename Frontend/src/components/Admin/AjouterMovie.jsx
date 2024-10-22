@@ -84,83 +84,89 @@ export default function AjouterMovie() {
 
     return (
         <div className="w-full p-8 shadow-sm">
-            <h2 className="mb-6 font-serif text-3xl text-center text-red-300">Ajouter un film</h2>
-           
-            <div className="flex justify-center">
-                <form encType='multipart/form-data' className="w-full max-w-lg p-8 rounded-lg shadow-md bg-gradient-to-r from-blue-400 to-purple-500" onSubmit={hundelSubmit}>
-                    <div className="grid grid-cols-2 gap-4">
-                        <div className="mb-4">
-                            <label className="block mb-2 font-bold text-gray-700">Titre du film:</label>
-                            <input
-                                type="text"
-                                name="Title"
-                                value={Title}
-                                onChange={(e) => setTitle(e.target.value)}
-                                placeholder="Entrez le titre du film"
-                                className="w-full px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-red-600"
-                            />
-                        </div>
-                        <div className="mb-4">
-                            <label className="block mb-2 font-bold text-gray-700">Genre:</label>
-                            <select
-                                name="genre"
-                                onChange={(e) => setGenre(e.target.value)}
-                                className="block w-full px-4 py-2 m-1 border rounded-sm shadow-sm border-1"
-                                id="genre"
-                            >
-                                <option value="" disabled>Select genre</option>
-                                {Genres.map((genre) => (
-                                    <option key={genre} value={genre}>{genre}</option>
-                                ))}
-                            </select>
-                        </div>
-                        <div className="mb-4">
-                            <label className="block mb-2 font-bold text-gray-700">Date de publication:</label>
-                            <input
-                                type="date"
-                                onChange={(e) => setPublishedDate(e.target.value)}
-                                className="w-full px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-red-600"
-                            />
-                        </div>
-                        <div className="mb-4">
-                            <label className="block mb-2 font-bold text-gray-700">Réalisateur:</label>
-                            <input
-                                type="text"
-                                onChange={(e) => setDirector(e.target.value)}
-                                placeholder="Entrez le nom du réalisateur"
-                                className="w-full px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-red-600"
-                            />
-                        </div>
-                        <div className="mb-4">
-                            <label className="block mb-2 font-bold text-gray-700">Affiche du film:</label>
-                            <input
-                                type="file"
-                                accept="image/*"
-                                onChange={(e) => setImage(e.target.files[0])}
-                                className="w-full px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-red-600"
-                            />
-                        </div>
-                        <div className="mb-4">
-                            <label className="block mb-2 font-bold text-gray-700">Description:</label>
-                            <textarea
-                                value={Description}
-                                rows="1"
-                                onChange={(e) => setDescription(e.target.value)}
-                                placeholder="Entrez la description du film"
-                                className="w-full px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-red-600"
-                            />
-                        </div>
+        <h2 className="mb-6 font-serif text-3xl text-center text-teal-300">Ajouter un film</h2>
+       
+        <div className="flex justify-center">
+            <form
+                encType='multipart/form-data'
+                className="w-full max-w-lg p-8 rounded-lg shadow-md bg-gradient-to-r from-teal-400 to-teal-600"
+                onSubmit={hundelSubmit}
+            >
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="mb-4">
+                        <label className="block mb-2 font-bold text-gray-700">Titre du film:</label>
+                        <input
+                            type="text"
+                            name="Title"
+                            value={Title}
+                            onChange={(e) => setTitle(e.target.value)}
+                            placeholder="Entrez le titre du film"
+                            className="w-full px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-600"
+                        />
                     </div>
-                    <div className="flex justify-end mt-6">
-                        <button
-                            type="submit"
-                            className="px-4 py-2 font-bold text-white bg-red-600 rounded hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-600"
+                    <div className="mb-4">
+                        <label className="block mb-2 font-bold text-gray-700">Genre:</label>
+                        <select
+                            name="genre"
+                            onChange={(e) => setGenre(e.target.value)}
+                            className="block w-full px-4 py-2 m-1 border rounded-sm shadow-sm"
+                            id="genre"
                         >
-                            Ajouter le film
-                        </button>
+                            <option value="" disabled>Select genre</option>
+                            {Genres.map((genre) => (
+                                <option key={genre} value={genre}>{genre}</option>
+                            ))}
+                        </select>
                     </div>
-                </form>
-            </div>
+                    <div className="mb-4">
+                        <label className="block mb-2 font-bold text-gray-700">Date de publication:</label>
+                        <input
+                            type="date"
+                            onChange={(e) => setPublishedDate(e.target.value)}
+                            className="w-full px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-600"
+                        />
+                    </div>
+                    <div className="mb-4">
+                        <label className="block mb-2 font-bold text-gray-700">Réalisateur:</label>
+                        <input
+                            type="text"
+                            onChange={(e) => setDirector(e.target.value)}
+                            placeholder="Entrez le nom du réalisateur"
+                            className="w-full px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-600"
+                        />
+                    </div>
+                    <div className="mb-4">
+                        <label className="block mb-2 font-bold text-gray-700">Affiche du film:</label>
+                        <input
+                            type="file"
+                            accept="image/*"
+                            onChange={(e) => setImage(e.target.files[0])}
+                            className="w-full px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-600"
+                        />
+                    </div>
+                    <div className="mb-4">
+                        <label className="block mb-2 font-bold text-gray-700">Description:</label>
+                        <textarea
+                            value={Description}
+                            rows="3"
+                            onChange={(e) => setDescription(e.target.value)}
+                            placeholder="Entrez la description du film"
+                            className="w-full px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-600"
+                        />
+                    </div>
+                </div>
+                <div className="flex justify-end mt-6">
+                    <button
+                        type="submit"
+                        className="px-4 py-2 font-bold text-white bg-teal-600 rounded hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-600"
+                    >
+                        Ajouter le film
+                    </button>
+                </div>
+            </form>
         </div>
+    </div>
+    
+    
     );
 }

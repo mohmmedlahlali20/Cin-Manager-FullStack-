@@ -74,7 +74,7 @@ export default function MovieDetails() {
     }
 
     return (
-        <section className="flex flex-col items-center justify-center min-h-screen p-8 bg-gradient-to-r from-blue-900 to-purple-800">
+        <section className="flex flex-col items-center justify-center min-h-screen p-8 bg-gray-900">
             <div className="container mx-auto">
                 <div className="flex flex-col lg:flex-row lg:space-x-10 lg:items-start animate-fadeIn">
                     <div className="mb-8 lg:w-1/3 lg:mb-0">
@@ -89,25 +89,25 @@ export default function MovieDetails() {
                     </div>
 
                     <div className="space-y-6 lg:w-2/3">
-                        <h1 className="text-5xl font-bold text-gray-100">{movie.title}</h1>
-                        <p className="text-lg text-gray-300 leading-relaxed">{movie.description}</p>
+                        <h1 className="text-5xl font-bold text-teal-100">{movie.title}</h1>
+                        <p className="text-lg text-teal-300 leading-relaxed">{movie.description}</p>
                         <div className="flex items-center space-x-4">
-                            <span className="px-3 py-1 text-xs font-semibold text-blue-800 bg-blue-100 rounded-full">{movie.genre}</span>
-                            <span className="text-sm text-gray-200">Released: {new Date(movie.publishedDate).toLocaleDateString()}</span>
-                            <span className="text-sm text-gray-200">Rating: <GetRaitingByFilmId filmId={movie._id} /></span>
+                            <span className="px-3 py-1 text-xs font-semibold text-teal-800 bg-teal-100 rounded-full">{movie.genre}</span>
+                            <span className="text-sm text-teal-200">Released: {new Date(movie.publishedDate).toLocaleDateString()}</span>
+                            <span className="text-sm text-teal-200">Rating: <GetRaitingByFilmId filmId={movie._id} /></span>
                         </div>
                         <div className="flex mt-6 space-x-4">
-                            {movie.vedio && (
+                            {movie.movies && (
                                 <a
                                     href={`/watch/${movie._id}`}
-                                    className="inline-block px-6 py-2 text-lg font-bold text-white bg-purple-600 rounded-lg shadow-lg transition-transform transform hover:bg-purple-700"
+                                    className="inline-block px-6 py-2 text-lg font-bold text-white bg-teal-600 rounded-lg shadow-lg transition-transform transform hover:bg-gray-700"
                                 >
                                     Watch Now
                                 </a>
                             )}
                             <a
                                 href={`/seance/${movie._id}`}
-                                className="inline-block px-6 py-2 text-lg font-bold text-white bg-purple-600 rounded-lg shadow-lg transition-transform transform hover:bg-gray-800"
+                                className="inline-block px-6 py-2 text-lg font-bold text-white bg-teal-600 rounded-lg shadow-lg transition-transform transform hover:bg-gray-800"
                             >
                                 Reserve Now
                             </a>
@@ -117,7 +117,7 @@ export default function MovieDetails() {
                                     e.preventDefault();
                                     savedMovies();
                                 }}
-                                className="inline-flex items-center justify-center px-4 py-2 text-lg font-bold text-white bg-purple-600 rounded-lg shadow-lg transition-transform transform hover:bg-gray-800"
+                                className="inline-flex items-center justify-center px-4 py-2 text-lg font-bold text-white bg-teal-600 rounded-lg shadow-lg transition-transform transform hover:bg-gray-800"
                             >
                                 <svg className="w-5 h-5" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path
