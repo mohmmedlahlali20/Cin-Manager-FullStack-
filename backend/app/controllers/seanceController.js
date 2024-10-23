@@ -3,8 +3,6 @@ const seanceService = require('../services/seanceService');
 exports.getAllSeances = async (req, res) => {
     try {
         const seances = await seanceService.getAllSeances();
-        console.log(seances);
-        
         res.status(200).json({ seances });
         return seances;
     } catch (error) {
@@ -17,7 +15,9 @@ exports.getAllSeances = async (req, res) => {
 exports.createSeance = async (req, res) => {
     try {
         const seance = await seanceService.createSeance(req.body);
+
         console.log(seance);
+
         res.status(201).json(seance);
     } catch (error) {
         console.error(error);
