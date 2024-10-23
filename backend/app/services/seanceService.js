@@ -23,7 +23,7 @@ class SeanceService {
         return seance;
     }
     async createSeance(data) {
-        console.log(data);
+     
         
         const newSeance = new seanceModel(data);
         await newSeance.save();
