@@ -49,8 +49,8 @@ exports.getFavoris = async (req, res) => {
     try {
         const favoris = await favorisService.getAllFavoris(req.user.id);
         res.status(200).json({ favoris });
+        return favoris;
     } catch (error) {
-        console.error(error);
         res.status(500).json({ message: 'Failed to get favoris' });
     }
 };
