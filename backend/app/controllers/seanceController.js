@@ -15,8 +15,9 @@ exports.getAllSeances = async (req, res) => {
 exports.createSeance = async (req, res) => {
     try {
         const seance = await seanceService.createSeance(req.body);
-      
-        
+
+        console.log(seance);
+
         res.status(201).json(seance);
     } catch (error) {
         console.error(error);
