@@ -12,7 +12,7 @@ const reservationSchema = new mongoose.Schema({
         required: true
     },
     reservedSeats: {
-        type: [Number], 
+        type:Number, 
         required: true
     },
     isDelete: {

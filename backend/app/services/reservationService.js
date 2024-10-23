@@ -21,20 +21,22 @@ class ReservationService {
         return reservations;
     }
     
-    async updateSeatAvailability(seatNumbers, salleId) {
-        const salle = await salleModel.findOne({ _id: salleId });
-
+    async updateSeatAvailability(reservedSeatNumber, salleId) {
+        const salle = await salleModel.findById(salleId);
+        
         if (!salle) throw new Error('Salle not found');
-
+    
         salle.seats.forEach(seat => {
-            if (seatNumbers.includes(seat.number)) {
+            if (seat.number === reservedSeatNumber) {
                 seat.available = false; 
             }
         });
-
-        await salle.save();  
+    
+        await salle.save();
         return salle;
-    };
+    }
+    
+    
 
     async createReservation(reservationData) {
         const newReservation = new reservationModel(reservationData);
