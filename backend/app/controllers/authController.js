@@ -31,6 +31,8 @@ exports.verifyEmail = async (req, res) => {
   }
 };
 
+
+
 exports.forgetPassword = async (req, res) => {
   try {
     await authService.forgetPassword(req.body.email);

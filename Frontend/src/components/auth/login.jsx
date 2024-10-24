@@ -105,7 +105,7 @@ function Login() {
         </form>
 
         <div className="flex items-center justify-around mt-6 text-sm text-gray-400">
-            <Link to="/forgot-password" className="mb-2 hover:underline hover:text-teal-400 transition duration-200">Forgot Password?</Link>
+            <Link to="/forgot_password" className="mb-2 hover:underline hover:text-teal-400 transition duration-200">Forgot Password?</Link>
             <Link to="/register" className="mb-2 hover:underline hover:text-teal-400 transition duration-200">Create an Account</Link>
         </div>
     </div>

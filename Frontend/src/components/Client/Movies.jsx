@@ -3,6 +3,10 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 import LogoSvg from '../logo/LogoSvg';
 import { useNavigate } from 'react-router-dom';
+import { FaHome, FaFilm, FaSignOutAlt, FaUserCircle } from 'react-icons/fa'
+import { jwtDecode } from 'jwt-decode';
+
+
 
 export default function Movies() {
     const path = import.meta.env.VITE_BACK_END_URI;
@@ -13,6 +17,12 @@ export default function Movies() {
     const [selectedGenre, setSelectedGenre] = useState('');
     const navigate = useNavigate();
     const token = Cookies.get('token');
+
+    const user = jwtDecode(token)
+    const userId = user.id 
+    console.log(userId);
+    
+
 
     const Genres = ['Action', 'Drama', 'Thriller', 'Comedy', 'Fantasy'];
 
@@ -58,7 +68,7 @@ export default function Movies() {
     return (
         <main className="bg-gray-900 min-h-screen">
             <nav className="bg-teal-300 bg-opacity-20 backdrop-blur-lg shadow-lg rounded-br-3xl rounded-bl-3xl sticky top-0 z-50">
-                <div className="container flex items-center justify-between px-6  mx-auto">
+                <div className="container flex items-center justify-between px-6 mx-auto">
                     <div className="text-2xl font-extrabold text-teal-400">
                         <LogoSvg />
                     </div>
@@ -71,25 +81,32 @@ export default function Movies() {
                     </div>
                     <ul className={`md:flex md:items-center md:space-x-8 ${isOpen ? 'block' : 'hidden'} md:block`}>
                         <li>
-                            <a href="/" className="text-teal-400 hover:text-teal-300 transition duration-200 ease-in-out transform hover:scale-105">
-                                Home
+                            <a href="/" className="text-teal-400 hover:text-teal-300 transition duration-200 ease-in-out transform hover:scale-105 flex items-center">
+                                <FaHome className="mr-2" />
+                                
                             </a>
                         </li>
                         <li>
-                            <a href="/films" className="text-teal-400 hover:text-teal-300 transition duration-200 ease-in-out transform hover:scale-105">
-                                All Movies
+                            <a href="/films" className="text-teal-400 hover:text-teal-300 transition duration-200 ease-in-out transform hover:scale-105 flex items-center">
+                                <FaFilm className="mr-2" />
                             </a>
                         </li>
                         <li>
-                            <button onClick={handleLogout} className="text-teal-400 hover:text-teal-300 transition duration-200 ease-in-out transform hover:scale-105">
-                                Logout
+                            <a href={`/me/${userId}`} className="text-teal-400 hover:text-teal-300 transition duration-200 ease-in-out transform hover:scale-105 flex items-center">
+                                <FaUserCircle className="mr-2" />
+                            </a>
+                        </li>
+                        <li>
+                            <button onClick={handleLogout} className="text-teal-400 hover:text-teal-300 transition duration-200 ease-in-out transform hover:scale-105 flex items-center">
+                                <FaSignOutAlt className="mr-2" />
+                                
                             </button>
                         </li>
                     </ul>
                 </div>
             </nav>
 
-                <h2 className="mb-12 text-4xl font-extrabold text-center text-teal-400">All Movies</h2>
+            <h2 className="mb-12 text-4xl font-extrabold text-center text-teal-400 m-5">All Movies</h2>
             <section className="py-8 bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900">
                 <div className="container mx-auto flex items-center justify-center mb-8">
                     <input

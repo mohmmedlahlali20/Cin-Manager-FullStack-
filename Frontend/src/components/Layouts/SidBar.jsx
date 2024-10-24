@@ -4,11 +4,15 @@ import Cookies from 'js-cookie'
 import { useNavigate } from 'react-router-dom';
 import { FaHome, FaPlus, FaList, FaUserCircle, FaSignOutAlt, FaBars  } from 'react-icons/fa';
 import LogoSvg from '../logo/LogoSvg'
+import {jwtDecode} from "jwt-decode";
 
 export default function Sidebar() {
     const [isOpen, setIsOpen] = useState(false);
     const navigate = useNavigate();
-
+    const token = Cookies.get('token');
+    const user = jwtDecode(token)
+const userId= user.id;
+    console.log(user)
     const toggleSidebar = () => {
         setIsOpen(!isOpen);
     };
@@ -22,7 +26,7 @@ export default function Sidebar() {
 
         <div className=''>
             <button
-                className="p-2 m-1 text-black md:hidden"
+                className="p-2 m-1 text-teal-300 md:hidden"
                 onClick={toggleSidebar}
             >
                 <FaBars className="text-xl" />
@@ -43,7 +47,7 @@ export default function Sidebar() {
                             { to: "/List_seances", label: "List des Seances", icon: <FaList className="text-lg" /> },
                             { to: "/List_Movies", label: "Movies", icon: <FaList className="text-lg" /> },
                             { to: "/listSalle", label: "Salles", icon: <FaList className="text-lg" /> },
-                            { to: "/profile", label: "Profile", icon: <FaUserCircle className="text-lg" /> }
+                            { to: `/me/${userId}`, label: "Profile", icon: <FaUserCircle className="text-lg" /> }
                         ].map((item, index) => (
                             <li key={index}>
                                 <Link

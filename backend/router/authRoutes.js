@@ -5,7 +5,8 @@ const {
   verifyEmail,
   forgetPassword,
   resetPassword,
-  Profile
+  Profile,
+
 } = require('../app/controllers/authController.js');
 
 const router = express.Router();
@@ -166,5 +167,8 @@ router.post('/reset-password/:token', resetPassword);  // Route pour réinitiali
  *         description: Utilisateur non trouvé
  */
 router.get('/me/:userId', Profile);  // Route pour récupérer le profil de l'utilisateur
+
+
+
 
 module.exports = router;

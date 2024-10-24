@@ -1,7 +1,10 @@
 import { createBrowserRouter } from "react-router-dom";
 import {
     Login,
-    Register
+    Register,
+    ForgetPassword,
+    ResetPassword,
+
 } from '../auth';
 
 import Layouts from "../Layouts/layouts";
@@ -136,6 +139,15 @@ const router = createBrowserRouter([
         path: "/login",
         element: <Login />,
     },
+    {
+        path: "/forgot_password",
+        element: <ForgetPassword />,
+    },
+    {
+        path: "/reset_password/:token",
+        element: <ResetPassword />,
+    },
+
     {
         path: "/register",
         element: <Register />,
