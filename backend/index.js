@@ -42,7 +42,7 @@ const reservationRoutes = require('./router/reservtionRoutes')
 const raitingRoutes = require('./router/ratingRouter')
 const commentsRoutes = require('./router/commentRoutes')
 
-app.use('/api/auth', authRoutes);
+
 app.use('/api/salle' , salleRoutes);
 app.use('/api/film', filmRoutes);
 app.use('/api/seance' , seanceRoutes)
