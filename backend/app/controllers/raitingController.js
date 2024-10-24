@@ -30,7 +30,9 @@ exports.getRaitingsByFilmId = async (req, res) => {
 
     } catch (error) {
 
+
         res.status(500).json({ message: 'Failed to get raitings by film id' });
+
     }
 
 }

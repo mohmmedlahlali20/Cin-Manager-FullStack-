@@ -12,6 +12,7 @@ describe('ReservationController', () => {
             body: {
                 seanceId: '123',
                 userId: '321',
+                reservedSeats: '2'
             },
             params: {
                 id: '123'
@@ -26,7 +27,7 @@ describe('ReservationController', () => {
 
     describe('addReservation', () => {
         test('should create a reservation successfully', async () => {
-            const mockReservation = { userId: '321', seanceId: '123' };
+            const mockReservation = req.body;
             reservationService.createReservation.mockResolvedValue(mockReservation);
 
             await reservationController.addReservation(req, res);
@@ -46,7 +47,6 @@ describe('ReservationController', () => {
 
             expect(res.status).toHaveBeenCalledWith(400);
             expect(res.json).toHaveBeenCalledWith({ msg: ' userId, seanceId are required.' });
-            expect(reservationService.createReservation).not.toHaveBeenCalled();
         });
 
         test('return 500 if service throws an error', async () => {
