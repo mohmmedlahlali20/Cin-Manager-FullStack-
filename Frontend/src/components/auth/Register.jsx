@@ -163,7 +163,7 @@ function Register() {
         {error && <p className="mt-4 text-sm text-red-600">{error}</p>}
 
         <div className="flex items-center justify-between mt-6 text-sm text-gray-400">
-            <Link to="/forgot-password" className="hover:underline hover:text-teal-400 transition duration-200">
+            <Link to="/forgot_password" className="hover:underline hover:text-teal-400 transition duration-200">
                 Forgot Password?
             </Link>
             <Link to="/login" className="hover:underline hover:text-teal-400 transition duration-200">
