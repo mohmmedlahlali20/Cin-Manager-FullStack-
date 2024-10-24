@@ -12,6 +12,7 @@
   "dependencies": {
     "@material-tailwind/react": "^2.1.10",
     "axios": "^1.7.7",
+    "chromedriver": "^130.0.1",
     "js-cookie": "^3.0.5",
     "jwt-decode": "^4.0.0",
     "primereact": "^10.8.4",
