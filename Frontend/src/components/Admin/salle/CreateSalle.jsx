@@ -52,10 +52,10 @@ export default function CreateSalle() {
 
     return (
         <div className="w-full p-8 shadow-sm">
-            <h2 className="mb-6 font-serif text-3xl text-center text-purple-300">Ajouter une salle</h2>
+            <h2 className="mb-6 font-serif text-3xl text-center text-teal-300">Ajouter une salle</h2>
 
             <div className="flex justify-center">
-                <form className="w-full max-w-lg p-8 rounded-lg shadow-md bg-gradient-to-r from-blue-400 to-purple-500" onSubmit={handleSubmit}>
+                <form className="w-full max-w-lg p-8 rounded-lg shadow-md bg-gradient-to-r from-teal-400 to-teal-800" onSubmit={handleSubmit}>
                     <div className="grid grid-cols-2 gap-4">
                         <div className="mb-4">
                             <label className="block mb-2 font-bold text-gray-700">Nom de la salle:</label>
@@ -65,7 +65,7 @@ export default function CreateSalle() {
                                 value={formData.name}
                                 onChange={handleChange}
                                 placeholder="Entrez le nom de la salle"
-                                className="w-full px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-600"
+                                className="w-full px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-600"
                                 required
                             />
                         </div>
@@ -78,7 +78,7 @@ export default function CreateSalle() {
                                 value={formData.capacite}
                                 onChange={handleChange}
                                 placeholder="Entrez la capacité de la salle"
-                                className="w-full px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-600"
+                                className="w-full px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-600"
                                 required
                             />
                         </div>
@@ -87,7 +87,7 @@ export default function CreateSalle() {
                     <div className="flex justify-end mt-6">
                         <button
                             type="submit"
-                            className="px-4 py-2 font-bold text-white bg-purple-600 rounded hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-600"
+                            className="px-4 py-2 font-bold text-white bg-teal-600 rounded hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-600"
                         >
                             Ajouter une salle
                         </button>

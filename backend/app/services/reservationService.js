@@ -1,5 +1,5 @@
-const reservationModel = require('../models/reservation');
-
+const salleModel = require('../models/salle'); 
+const reservationModel = require('../models/reservation')
 
 class ReservationService {
     async getAllReservations() {
@@ -16,37 +16,33 @@ class ReservationService {
                     model: 'Salle'     
                 }
             })
-            .populate('userId')    
+            .populate('userId');    
 
-    
         return reservations;
     }
     
+    async updateSeatAvailability(reservedSeatNumber, salleId) {
+        const salle = await salleModel.findById(salleId);
+        
+        if (!salle) throw new Error('Salle not found');
     
-    // async getReservationById(id) {
-    //     const reservation = await reservationModel.findById(id);
-    //     if (!reservation) throw new Error('Reservation not found');
-    //     return reservation;
-    // }
+        salle.seats.forEach(seat => {
+            if (seat.number === reservedSeatNumber) {
+                seat.available = false; 
+            }
+        });
     
+        await salle.save();
+        return salle;
+    }
+    
+    
+
     async createReservation(reservationData) {
         const newReservation = new reservationModel(reservationData);
         await newReservation.save();
         return newReservation;
     }
-
-    // async updateReservation(id, data) {
-    //     const updatedReservation = await reservationModel.findByIdAndUpdate(id, data, { new: true });
-    //     if (!updatedReservation) throw new Error('Reservation not found');
-    //     return updatedReservation;
-    // }
-    
-    // async deleteReservation(id) {
-    //     const deletedReservation = await reservationModel.findByIdAndUpdate(id, { isDelete: true }, { new: true });
-    //     if (!deletedReservation) throw new Error('Reservation not found');
-    //     return deletedReservation;
-    // }
 }
-
 
 module.exports = new ReservationService();
